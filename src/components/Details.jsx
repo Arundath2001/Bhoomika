@@ -36,8 +36,8 @@ function Details() {
                     </div>
                 ))}
                 <div className="details_carousel">
-                    <button className="details_carouselbtn" onClick={prevCard}>❮</button>
-                    <button className="details_carouselbtn" onClick={nextCard}>❯</button>
+                    <button className="details_carouselbtn" onClick={prevCard}><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 20 20"><g fill="currentColor"><path d="M6.732 10.64a1 1 0 1 1 1.536-1.28l5 6a1 1 0 1 1-1.536 1.28z"/><path d="M8.268 10.64a1 1 0 1 1-1.536-1.28l5-6a1 1 0 1 1 1.536 1.28z"/></g></svg></button>
+                    <button className="details_carouselbtn" onClick={nextCard}><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 20 20"><g fill="currentColor"><path d="M11.732 9.36a1 1 0 1 1 1.536 1.28l-5 6a1 1 0 1 1-1.536-1.28z"/><path d="M6.732 4.64a1 1 0 0 1 1.536-1.28l5 6a1 1 0 1 1-1.536 1.28z"/></g></svg></button>
                 </div>
             </div>
         </div>

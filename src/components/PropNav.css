@@ -8,7 +8,7 @@
 .propnav div {
     text-decoration: none;
     font-size: 16px;
-    font-weight: 500;
+    font-weight: 700;
     color: #1A1A1A;
     padding: 10px;
     border: 1px solid transparent;
@@ -31,7 +31,7 @@
     }
 
     .propnav div {
-        font-size: 10px;
+        font-size: 12px;
         padding: 6px;
     }
 }

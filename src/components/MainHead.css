@@ -16,14 +16,15 @@
 @media only screen and (max-width: 600px) {
     .mainhead h4{
         font-size: 20px;
+        margin-bottom: 5px;
+        max-width: 240px;
+        margin: auto;
     }
 
     .mainhead p{
         font-size: 14px;
-    }
-
-    .mainhead{
-        width: 260px;
+        max-width: 300px;
         margin: auto;
     }
+
 }

@@ -24,8 +24,8 @@
 
 @media only screen and (max-width: 600px) {
     .detailscard img{
-        width: 32px;
-        height: 32px;
+        width: 45px;
+        height: 45px;
     }
 
     .detailscard_maintext{

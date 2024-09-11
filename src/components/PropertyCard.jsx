@@ -31,11 +31,11 @@ const PropertyCard = ({
 
   useEffect(() => {
     const handleResize = () => {
-      const maxLength = window.innerWidth < 600 ? 10 : 25;
+      const maxLength = window.innerWidth < 600 ? 20 : 25;
       setSlicedLocationDetails(locationdetails.length <= maxLength ? locationdetails : `${locationdetails.substring(0, maxLength)}...`);
     };
 
-    handleResize(); // Set initial value
+    handleResize();
     window.addEventListener('resize', handleResize);
     
     return () => window.removeEventListener('resize', handleResize);

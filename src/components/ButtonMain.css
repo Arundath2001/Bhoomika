@@ -44,10 +44,10 @@
 
 @media only screen and (max-width: 600px) {
     
-    .buttonmain_white{
+    /* .buttonmain_white{
         width: 110px;
         padding: 14px;
-    }
+    } */
 
     .buttonmain p{
         font-size: 12px
