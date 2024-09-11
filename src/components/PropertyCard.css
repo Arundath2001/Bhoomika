@@ -64,6 +64,7 @@
   width: 340px;
   height: 300px;
   border-radius: 16px;
+  object-fit: cover;
 }
 
 .propertycard_toptext {
@@ -207,7 +208,7 @@
   }
 
   .propertycard_img {
-    width: 155px;
+    width: 145px;
     height: 170px;
   }
 
@@ -220,7 +221,7 @@
   }
 
   .propertycard_cent, .propertycard_money {
-    font-size: 14px;
+    font-size: 12px;
   }
 
   .propertycard_btns {
@@ -242,5 +243,9 @@
 
   .description_popup {
     padding: 10px;
+  }
+
+  .propertycard_details4{
+    gap: 5px;
   }
 }

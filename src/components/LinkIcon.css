@@ -32,5 +32,9 @@
     .linkicon{
         margin-right: 0;
     }
+
+    .linkicon a{
+        font-size: 12px;
+    }
     
 }

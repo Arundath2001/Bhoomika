@@ -19,7 +19,7 @@
 
 @media only screen and (max-width: 600px) {
     .cities .cities_cards{
-        gap: 5px;
+        gap: 10px;
     }
 
     .cities_cont{

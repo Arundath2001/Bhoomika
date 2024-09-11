@@ -18,11 +18,7 @@
   }
 
   .properties_cards{
-    gap: 5px;
+    gap: 10px;
     margin-top: 20px;
-  }
-
-  .properties_cont{
-    padding: 8px;
   }
 }

@@ -1,6 +1,7 @@
 .icontext{
     display: flex;
     gap: 10px;
+    align-items: center;
 }
 
 .icontext svg{
@@ -22,7 +23,7 @@
 @media only screen and (max-width: 600px) {
 
     .icontext{
-        gap: 8px;
+        gap: 5px;
     }
 
     .icontext_text{

@@ -39,8 +39,8 @@
 
 @media only screen and (max-width: 600px) {
     .citycard{
-        width: 162px;
-        height: 195px;
+        width: 135px;
+        height: 180px;
     }
 
     .citycard_details h5{
