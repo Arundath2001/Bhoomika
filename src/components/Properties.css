@@ -13,6 +13,10 @@
 
 @media (max-width: 600px) {
 
+  .properties_cards{
+    justify-self: normal;
+  }
+
   .properties{
     margin-top: 40px;
   }

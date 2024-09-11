@@ -8,7 +8,6 @@
 .cities_cards {
     display: flex;
     gap: 45px;
-    justify-content: center;
     margin-bottom: 20px;
     flex-wrap: wrap;
 }
@@ -18,6 +17,11 @@
 }
 
 @media only screen and (max-width: 600px) {
+
+    .cities{
+        padding: 0px;
+    }
+
     .cities .cities_cards{
         gap: 10px;
     }

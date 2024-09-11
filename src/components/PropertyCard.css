@@ -196,10 +196,15 @@
 
 @media only screen and (max-width: 600px) {
 
+  .propertycard{
+    margin: auto;
+  }
+
   .propertycard_cont {
     height: 265px;
     margin-top: 0;
     padding: 5px;
+    box-sizing: border-box;
   }
 
   .propertycard_data1 {
@@ -208,8 +213,8 @@
   }
 
   .propertycard_img {
-    width: 145px;
-    height: 170px;
+    width: 140px;
+    height: 160px;
   }
 
   .propertycard_topdata {
