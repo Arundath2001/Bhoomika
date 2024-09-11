@@ -198,6 +198,7 @@
   .propertycard_cont {
     height: 265px;
     margin-top: 0;
+    padding: 5px;
   }
 
   .propertycard_data1 {
