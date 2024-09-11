@@ -12,7 +12,7 @@ function Property({ isFormOpen, formMode, setIsFormOpen, selectedIds, setSelecte
 
     const fetchProperties = async () => {
         try {
-            const response = await axios.get('http://localhost:5000/properties');
+            const response = await axios.get('https://traveling-earthy-swim.glitch.me//properties');
             console.log("Fetched properties:", response.data);
             setProperties(response.data);
         } catch (error) {
@@ -23,7 +23,7 @@ function Property({ isFormOpen, formMode, setIsFormOpen, selectedIds, setSelecte
     const handleFormSubmit = async (propertyDetails) => {
         if (formMode === "edit") {
             try {
-                await axios.put(`http://localhost:5000/properties/${propertyDetails.id}`, propertyDetails);
+                await axios.put(`https://traveling-earthy-swim.glitch.me//properties/${propertyDetails.id}`, propertyDetails);
                 setProperties((prevProperties) =>
                     prevProperties.map((prop) =>
                         prop.id === propertyDetails.id ? propertyDetails : prop
@@ -34,7 +34,7 @@ function Property({ isFormOpen, formMode, setIsFormOpen, selectedIds, setSelecte
             }
         } else {
             try {
-                const response = await axios.post('http://localhost:5000/properties', propertyDetails);
+                const response = await axios.post('https://traveling-earthy-swim.glitch.me//properties', propertyDetails);
                 setProperties((prevProperties) => [...prevProperties, response.data]);
             } catch (error) {
                 console.error("Error adding property", error);

@@ -10,7 +10,7 @@ function Cities() {
     useEffect(() => {
         const fetchCities = async () => {
             try {
-                const response = await fetch('http://localhost:5000/cities'); 
+                const response = await fetch('https://traveling-earthy-swim.glitch.me//cities'); 
                 if (response.ok) {
                     const data = await response.json();
                     setCities(data);

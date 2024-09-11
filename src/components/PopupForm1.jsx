@@ -33,7 +33,6 @@ function PopupForm1({ onClose }) {
     const handleSubmit = async (e) => {
         e.preventDefault();
 
-        // Validate phone number
         if (formData.phone.length < 10) {
             setAlert({ isVisible: true, message: "Phone number must be at least 10 digits.", isError: true });
             return;
@@ -44,7 +43,7 @@ function PopupForm1({ onClose }) {
         const plotSize = `${formData.plotSize.input} ${formData.plotSize.unit}`;
 
         try {
-            await axios.post('http://localhost:5000/enquiries', {
+            await axios.post('https://traveling-earthy-swim.glitch.me//enquiries', {
                 ...formData,
                 plotSize
             });

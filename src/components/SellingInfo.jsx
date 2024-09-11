@@ -9,7 +9,7 @@ function SellingInfo({ setSelectedIds, dataChanged, searchQuery }) {
     useEffect(() => {
         const fetchSellingInfo = async () => {
             try {
-                const response = await fetch('http://localhost:5000/selling-info');
+                const response = await fetch('https://traveling-earthy-swim.glitch.me//selling-info');
                 const data = await response.json();
                 setSellingInfo(data);
             } catch (error) {

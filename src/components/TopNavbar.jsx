@@ -32,19 +32,19 @@ function TopNavbar({ activeTab, setFormMode, setIsFormOpen, selectedIds, setSele
 
                 switch (activeTab) {
                     case "Enquiry":
-                        apiEndpoint = 'http://localhost:5000/enquiries/count'; 
+                        apiEndpoint = 'https://traveling-earthy-swim.glitch.me//enquiries/count'; 
                         break;
                     case "Selling Info":
-                        apiEndpoint = 'http://localhost:5000/selling-info/count'; 
+                        apiEndpoint = 'https://traveling-earthy-swim.glitch.me//selling-info/count'; 
                         break;
                     case "City":
-                        apiEndpoint = 'http://localhost:5000/cities/count'; 
+                        apiEndpoint = 'https://traveling-earthy-swim.glitch.me//cities/count'; 
                         break;
                     case "Property":
-                        apiEndpoint = 'http://localhost:5000/properties/count'; 
+                        apiEndpoint = 'https://traveling-earthy-swim.glitch.me//properties/count'; 
                         break;
                     case "Schedules":
-                        apiEndpoint = 'http://localhost:5000/schedules/count'; 
+                        apiEndpoint = 'https://traveling-earthy-swim.glitch.me//schedules/count'; 
                         break;
                     default:
                         throw new Error(`Unknown tab: ${activeTab}`);
@@ -98,19 +98,19 @@ function TopNavbar({ activeTab, setFormMode, setIsFormOpen, selectedIds, setSele
     
             switch (activeTab) {
                 case "City":
-                    apiEndpoint = 'http://localhost:5000/cities';
+                    apiEndpoint = 'https://traveling-earthy-swim.glitch.me//cities';
                     break;
                 case "Property":
-                    apiEndpoint = 'http://localhost:5000/properties';
+                    apiEndpoint = 'https://traveling-earthy-swim.glitch.me//properties';
                     break;
                 case "Selling Info":
-                    apiEndpoint = 'http://localhost:5000/selling-info';
+                    apiEndpoint = 'https://traveling-earthy-swim.glitch.me//selling-info';
                     break;
                 case "Schedules":
-                    apiEndpoint = 'http://localhost:5000/schedules';
+                    apiEndpoint = 'https://traveling-earthy-swim.glitch.me//schedules';
                     break;
                 case "Enquiry":
-                    apiEndpoint = 'http://localhost:5000/enquiry';
+                    apiEndpoint = 'https://traveling-earthy-swim.glitch.me//enquiry';
                     break;
                 default:
                     throw new Error(`Unknown tab: ${activeTab}`);
