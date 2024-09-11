@@ -24,6 +24,7 @@
 
     .cities .cities_cards{
         gap: 10px;
+        padding: 20px;
     }
 
     .cities_cont{

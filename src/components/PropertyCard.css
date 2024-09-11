@@ -255,3 +255,9 @@
     gap: 5px;
   }
 }
+
+@media (max-width: 400px){
+  .propertycard_img{
+    width: 130px;
+  }
+}
