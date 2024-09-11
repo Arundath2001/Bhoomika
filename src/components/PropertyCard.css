@@ -205,6 +205,11 @@
     left: 50%;
   }
 
+  .propertycard_img {
+    width: 290px;
+    height: 310px;
+  }
+
   /* .propertycard{
     margin: auto;
   }

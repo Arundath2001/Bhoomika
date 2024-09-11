@@ -51,7 +51,7 @@
     }
 
     .home_head{
-        padding-top: 120px;
+        padding-top: 80px;
     }
 
     .home_head h2{
@@ -75,6 +75,7 @@
         background-image: none;
         box-shadow: none;
         margin-bottom: 20px;
+        height: auto;
     }
 
     .home_data1{
