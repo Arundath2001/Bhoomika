@@ -45,3 +45,27 @@
         margin: auto;
     }
 }
+
+@media (min-width: 768px) and (max-width: 1024px) {
+    .detailscard img{
+        width: 75px;
+        height: 75px;
+    }
+
+    .detailscard_maintext{
+        font-size: 13px;
+    }
+
+    .detailscard_subtext{
+        font-size: 12px;
+    }
+
+    .detailscard{
+        box-shadow: 0px 4px 4px 0px #00000040;
+        background: #FFFFFF;
+        border-radius: 6px;
+        padding: 10px;
+        max-width: 370px;
+        margin: auto;
+    }
+}

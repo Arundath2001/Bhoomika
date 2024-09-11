@@ -5,7 +5,7 @@ import logo1 from "../assets/mainlogo.png";
 import navmob from "../assets/navmob.png";
 import LinkIcon from "./LinkIcon";
 
-function Navbar(){
+function Navbar({scrollToContact}){
 
     const [isOpen, setIsOpen] = useState(false);
 
@@ -20,7 +20,7 @@ function Navbar(){
             <div className="navbar_links">
                 <a className="navbar_link" href="/">Home</a>
                 <a className="navbar_link" href="/properties">Properties</a>
-                <a className="navbar_link" href="">Contact</a>
+                <a className="navbar_link" href="/#contact" >Contact</a>
             </div>
 
             <div className="navbar_contact" href="">
@@ -42,10 +42,10 @@ function Navbar(){
 
                     <div className="navbar_overlaylinks">
                         <a className="navbar_overlaylink" href="/" onClick={toggleMenu}>Home</a>
-                        <a className="navbar_overlaylink" href="/properties" onClick={toggleMenu}>Browse Properties</a>
-                        <a className="navbar_overlaylink" href="/properties" onClick={toggleMenu}>Sell Properties</a>
+                        <a className="navbar_overlaylink" href="/properties" onClick={toggleMenu}>Properties</a>
+                        <a className="navbar_overlaylink" href="/all-cities" onClick={toggleMenu}>Cities</a>
                         <a className="navbar_overlaylink" href="/properties" onClick={toggleMenu}>Enquiry</a>
-                        <a className="navbar_overlaylink" href="" onClick={toggleMenu}>Contact</a>
+                        <a className="navbar_overlaylink" href="#contact" onClick={toggleMenu}>Contact</a>
                     </div>
 
                     <div className="navbar_overlaycontact">

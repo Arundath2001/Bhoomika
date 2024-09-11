@@ -12,24 +12,32 @@ const reviewsData = [
 
 function Reviews() {
     const [currentIndex, setCurrentIndex] = useState(0);
-    const [isMobile, setIsMobile] = useState(window.innerWidth <= 600);
+    const [deviceType, setDeviceType] = useState(getDeviceType());
+
+    function getDeviceType() {
+        const width = window.innerWidth;
+        if (width <= 600) return 'mobile';
+        if (width <= 1024) return 'tablet';
+        return 'desktop';
+    }
 
     useEffect(() => {
-        const handleResize = () => setIsMobile(window.innerWidth <= 600);
+        const handleResize = () => setDeviceType(getDeviceType());
         window.addEventListener('resize', handleResize);
 
         return () => window.removeEventListener('resize', handleResize);
     }, []);
 
     useEffect(() => {
-        if (isMobile) {
-            const interval = setInterval(() => {
+        let interval;
+        if (deviceType === 'mobile' || deviceType === 'tablet') {
+            interval = setInterval(() => {
                 setCurrentIndex(prevIndex => (prevIndex + 1) % reviewsData.length);
-            }, 3000); 
+            }, deviceType === 'mobile' ? 3000 : 5000); 
 
             return () => clearInterval(interval);
         }
-    }, [isMobile]);
+    }, [deviceType]);
 
     return (
         <div className="reviews">
@@ -42,7 +50,7 @@ function Reviews() {
             </div>
 
             <div className="reviews_cards">
-                {isMobile ? (
+                {deviceType === 'mobile' || deviceType === 'tablet' ? (
                     <ReviewsCard
                         reviewimage={reviewsData[currentIndex].reviewimage}
                         maintext={reviewsData[currentIndex].maintext}

@@ -114,7 +114,9 @@ function Home() {
 
             <Reviews />
 
+            <div id="contact">
             <Contact />
+            </div>
 
             {isPopupVisible1 && (
                 <div className="home_popupform1">

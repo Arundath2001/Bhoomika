@@ -28,6 +28,7 @@
 .footer_cont img{
     width: 195px;
     height: 55px;
+    object-fit: cover;
 }
 
 .footer_icons{

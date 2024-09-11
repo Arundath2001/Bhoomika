@@ -50,3 +50,11 @@
     background-color: #c0c0c0;
   }
   
+
+@media only screen and (max-width: 600px) {
+
+  .propertiespage_cont{
+    padding-top: 120px;
+  }
+  
+}
