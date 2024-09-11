@@ -66,6 +66,7 @@
 
     .avatar{
         max-width: 230px;
+        margin: 35px auto 15px;
     }
 
     .avatar_text{
