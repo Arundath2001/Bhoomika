@@ -11,14 +11,14 @@
   gap: 10px;
 }
 
-@media only screen and (max-width: 600px) {
+@media (max-width: 600px) {
 
   .properties{
     margin-top: 40px;
   }
 
   .properties_cards{
-    gap: 10px;
+    gap: 5px;
     margin-top: 20px;
   }
 
