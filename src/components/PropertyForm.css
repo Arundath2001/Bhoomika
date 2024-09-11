@@ -6,7 +6,8 @@
     max-height: 600px; 
     overflow-y: auto; 
     background: #FFFFFF;
-    scrollbar-width: none;
+    scrollbar-width: thin; 
+    scrollbar-color: #7F9884 #f1f1f1;
 }
 
 .propertyform_fields {
@@ -34,4 +35,23 @@
 
 .propertyform span {
     font-weight: 300;
+}
+
+.propertyform_btns {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    position: sticky;
+    bottom: 0;
+    background: #FFFFFF;
+    padding: 10px;
+    z-index: 10;
+}
+
+.propertyform h6{
+    position: sticky;
+    top: 0;
+    background: #FFFFFF;
+    padding: 10px;
+    z-index: 10;
 }

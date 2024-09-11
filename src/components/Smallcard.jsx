@@ -33,11 +33,6 @@ function Smallcard(){
                 <Icongroup addclass="iconswhite" />
              </div>
 
-            <div className="smallcard_circles">
-                <div className="smallcard_circle1"></div>
-                <div className="smallcard_circle2"></div>
-            </div>
-
         </div>
     );
 
