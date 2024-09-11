@@ -1,0 +1,36 @@
+.linkicon a{
+    text-align: right;
+    text-decoration: none;
+    color: #1A1A1A;
+    font-weight: 500;
+}
+
+.linkicon {
+    align-self: flex-end;
+    margin-right: calc((100% - (255px * 4) - (45px * 3)) / 2);
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.greytext{
+    align-self: center;
+}
+
+.greytext svg , .greytext a{
+    color: #1A1A1AB2;
+    font-size: 12px;
+    text-align: center;
+}
+
+.greytext svg{
+    width: 16px;
+    height: 16px;
+}
+
+@media only screen and (max-width: 600px) {
+    .linkicon{
+        margin-right: 0;
+    }
+    
+}

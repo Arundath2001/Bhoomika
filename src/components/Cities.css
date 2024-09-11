@@ -1,0 +1,28 @@
+.cities_cont {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 50px;
+}
+
+.cities_cards {
+    display: flex;
+    gap: 45px;
+    justify-content: center;
+    margin-bottom: 20px;
+    flex-wrap: wrap;
+}
+
+.cities{
+    margin-top: 35px;
+}
+
+@media only screen and (max-width: 600px) {
+    .cities .cities_cards{
+        gap: 20px;
+    }
+
+    .cities_cont{
+        margin-top: 25px;
+    }
+}

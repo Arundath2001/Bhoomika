@@ -1,0 +1,28 @@
+.properties_cards {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 45px;
+}
+
+.properties_cont {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+@media only screen and (max-width: 600px) {
+
+  .properties{
+    margin-top: 40px;
+  }
+
+  .properties_cards{
+    gap: 10px;
+    margin-top: 20px;
+  }
+
+  .properties_cont{
+    padding: 8px;
+  }
+}

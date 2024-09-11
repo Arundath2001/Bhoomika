@@ -1,0 +1,21 @@
+.blackcard{
+    display: flex;
+    justify-content: space-between;
+    background: #1A1A1A;
+    align-items: center;
+    padding: 60px 30px;
+    border-radius: 16px;
+    margin: 65px 120px;
+}
+
+.blackcard_text{
+    font-size: 30px;
+    font-weight: 500;
+    color: #FFFFFF;
+}
+
+@media only screen and (max-width: 600px) {
+    .blackcard{
+        display: none;
+    }
+}

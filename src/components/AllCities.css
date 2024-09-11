@@ -1,0 +1,84 @@
+.allcities .cities{
+    padding-top: 130px;
+}
+
+.allcities {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+.cities {
+    flex: 1;
+    padding: 20px;
+}
+
+.cities_cont {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.allcities_cards {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 60px;
+}
+
+.cities_cards .city-card {
+    flex: 1 1 calc(25% - 20px);
+    box-sizing: border-box;
+    margin-bottom: 20px;
+}
+
+.pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 20px 0;
+}
+
+.pagination button {
+    padding: 10px 15px;
+    margin: 0 5px;
+    background-color: #f0f0f0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    cursor: pointer;
+    outline: none;
+    transition: all 0.3s ease;
+}
+
+.pagination button:hover {
+    background-color: #e0e0e0;
+}
+
+.pagination button.active {
+    border: 1px solid blue;
+    color: blue;
+    font-weight: bold;
+}
+
+.pagination button:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.pagination button:nth-child(1), .pagination button:last-child {
+    background-color: #d3d3d3;
+    border: none;
+}
+
+.pagination button:nth-child(1):hover, .pagination button:last-child:hover {
+    background-color: #c0c0c0;
+}
+
+
+@media only screen and (max-width: 600px) {
+
+    .allcities_cards{
+        gap: 20px;
+    }
+
+}
