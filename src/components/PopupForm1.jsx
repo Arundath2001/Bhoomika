@@ -33,8 +33,8 @@ function PopupForm1({ onClose }) {
     const handleSubmit = async (e) => {
         e.preventDefault();
 
-        if (formData.phone.length < 10) {
-            setAlert({ isVisible: true, message: "Phone number must be at least 10 digits.", isError: true });
+        if (formData.phone.length !== 10) {
+            setAlert({ isVisible: true, message: "Phone number must be exactly 10 digits.", isError: true });
             return;
         }
 
@@ -43,7 +43,7 @@ function PopupForm1({ onClose }) {
         const plotSize = `${formData.plotSize.input} ${formData.plotSize.unit}`;
 
         try {
-            await axios.post('https://traveling-earthy-swim.glitch.me//enquiries', {
+            await axios.post('https://traveling-earthy-swim.glitch.me/enquiries', {
                 ...formData,
                 plotSize
             });

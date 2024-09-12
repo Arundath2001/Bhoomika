@@ -108,8 +108,8 @@ function PropertyForm({ mode, setIsFormOpen, propertyData, onSubmit }) {
             return;
         }
 
-        if (phoneNumber.length < 10) {
-            setAlertMessage({ isVisible: true, message: 'Phone number must be at least 10 digits.', isError: true });
+        if (phoneNumber.length !== 10) {
+            setAlertMessage({ isVisible: true, message: 'Phone number must be exactly 10 digits.', isError: true });
             return;
         }
 

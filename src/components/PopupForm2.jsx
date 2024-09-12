@@ -72,8 +72,8 @@ function PopupForm2({ onClose }) {
             return;
         }
 
-        if (phone.length < 10) {
-            setAlert({ isVisible: true, message: "Phone number must be at least 10 digits.", isError: true });
+        if (phone.length !== 10) {
+            setAlert({ isVisible: true, message: "Phone number must be exactly 10 digits.", isError: true });
             return;
         }
 

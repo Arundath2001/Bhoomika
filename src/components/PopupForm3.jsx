@@ -21,8 +21,8 @@ function PopupForm3({ onClose, propertyDetails }) {
     const handleSubmit = async (e) => {
         e.preventDefault();
 
-        if (phoneNumber.length < 10) {
-            setAlert({ isVisible: true, message: "Phone number must be at least 10 digits.", isError: true });
+        if (phoneNumber.length !== 10) {
+            setAlert({ isVisible: true, message: "Phone number must be exactly 10 digits.", isError: true });
             return;
         }
 
