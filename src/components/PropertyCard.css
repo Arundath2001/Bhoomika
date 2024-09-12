@@ -205,10 +205,14 @@
     left: 50%;
   }
 
-  .propertycard_img {
+  .propertycard_cont{
+    margin-top: 10px;
+  }
+
+  /* .propertycard_img {
     width: 290px;
     height: 310px;
-  }
+  } */
 
   /* .propertycard{
     margin: auto;

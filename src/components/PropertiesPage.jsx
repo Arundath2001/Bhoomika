@@ -6,6 +6,7 @@ import PropertyCard from "./PropertyCard";
 import axios from "axios";
 import Navbar from "./Navbar";
 import Footer from "./Footer";
+import LoadingScreen from "./LoadingScreen";
 
 function PropertiesPage() {
   const [properties, setProperties] = useState([]);
@@ -27,7 +28,7 @@ function PropertiesPage() {
       });
   }, []);
 
-  if (loading) return <p>Loading...</p>;
+  if (loading) return <LoadingScreen isVisible={true} text="Loading properties..." />;
   if (error) return <p>{error}</p>;
 
   const filteredProperties = selectedType === "All Properties"
@@ -94,7 +95,7 @@ function PropertiesPage() {
         </div>
         <div className="pagination">
           {currentPage > 1 && (
-            <button onClick={() => paginate(currentPage - 1)}>&lt;</button>
+            <button onClick={() => paginate(currentPage - 1)}><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 20 20"><path fill="currentColor" d="m4 10l9 9l1.4-1.5L7 10l7.4-7.5L13 1z"/></svg></button>
           )}
           {getPageNumbers().map(number => (
             <button
@@ -106,7 +107,7 @@ function PropertiesPage() {
             </button>
           ))}
           {currentPage < totalPages && (
-            <button onClick={() => paginate(currentPage + 1)}>&gt;</button>
+            <button onClick={() => paginate(currentPage + 1)}><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 20 20"><path fill="currentColor" d="M7 1L5.6 2.5L13 10l-7.4 7.5L7 19l9-9z"/></svg></button>
           )}
         </div>
       </div>

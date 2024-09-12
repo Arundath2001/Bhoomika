@@ -24,15 +24,20 @@
     cursor: pointer;
     outline: none;
     transition: all 0.3s ease;
+    font-size: medium;
   }
   
+  .pagination svg{
+    width: 12px;
+  }
+
   .pagination button:hover {
     background-color: #e0e0e0;
   }
   
   .pagination button.active {
-    border: 1px solid blue;
-    color: blue;
+    border: 1px solid #57C9B4;
+    color: #57C9B4;
     font-weight: bold;
   }
   
@@ -43,7 +48,6 @@
   
   .pagination button:nth-child(1), .pagination button:last-child {
     background-color: #d3d3d3;
-    border: none;
   }
   
   .pagination button:nth-child(1):hover, .pagination button:last-child:hover {

@@ -5,6 +5,7 @@ import PropNav from "./PropNav";
 import PropertyCard from "./PropertyCard";
 import axios from "axios";
 import LinkIcon from "./LinkIcon";
+import LoadingScreen from './LoadingScreen';
 
 function Properties() {
   const [properties, setProperties] = useState([]);
@@ -13,7 +14,7 @@ function Properties() {
   const [selectedType, setSelectedType] = useState("All Properties");
 
   useEffect(() => {
-    axios.get('https://traveling-earthy-swim.glitch.me//properties')
+    axios.get('https://traveling-earthy-swim.glitch.me/properties')
       .then(response => {
         setProperties(response.data);
         setLoading(false);
@@ -24,7 +25,8 @@ function Properties() {
       });
   }, []);
 
-  if (loading) return <p>Loading...</p>;
+  if (loading) return <LoadingScreen isVisible={true} text="Loading properties..." />;
+
   if (error) return <p>{error}</p>;
 
   const filteredProperties = selectedType === "All Properties"
