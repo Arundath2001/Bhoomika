@@ -33,6 +33,7 @@ const PropertyCard = ({
     const handleResize = () => {
       const maxLength = window.innerWidth < 600 ? 10 : 25;
       setSlicedLocationDetails(locationdetails.length <= maxLength ? locationdetails : `${locationdetails.substring(0, maxLength)}...`);
+      console.log(plotsize);
     };
 
     handleResize();
@@ -60,6 +61,12 @@ const PropertyCard = ({
   const showPreviousImage = () => setCurrentImageIndex((prevIndex) => (prevIndex - 1 + imageurls.length) % imageurls.length);
 
   const toggleDescription = () => setIsDescriptionVisible(prev => !prev);
+
+  const getRateLabel = () => {
+    if (plotsize.toLowerCase().includes('sq ft')) return 'Rate per sq ft';
+    if (plotsize.toLowerCase().includes('acre')) return 'Rate per acre';
+    return 'Rate per cent';    
+  };
 
   return (
     <div className='propertycard'>
@@ -107,7 +114,7 @@ const PropertyCard = ({
           </div>
 
           <div className='propertycard_details3'>
-            <IconText text="Rate per cent" svg={
+            <IconText text={getRateLabel()} svg={
               <svg xmlns="http://www.w3.org/2000/svg" width="384" height="384" viewBox="0 0 48 48">
                 <g fill="black" fill-rule="evenodd" clip-rule="evenodd">
                   <path d="M28.772 24.667A4 4 0 0 0 25 22v-1h-2v1a4 4 0 1 0 0 8v4c-.87 0-1.611-.555-1.887-1.333a1 1 0 1 0-1.885.666A4 4 0 0 0 23 36v1h2v-1a4 4 0 0 0 0-8v-4a2 2 0 0 1 1.886 1.333a1 1 0 1 0 1.886-.666M23 24a2 2 0 1 0 0 4zm2 10a2 2 0 1 0 0-4z"/>

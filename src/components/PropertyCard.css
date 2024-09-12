@@ -201,7 +201,7 @@
 @media only screen and (max-width: 600px) {
 
   .propertycard_btns{
-    top: 50%;
+    top: 55%;
     left: 50%;
   }
 
@@ -220,7 +220,8 @@
   }
 
   .propertycard_cont{
-    height: max-content;
+    height: -webkit-fill-available;
+    padding: 7px;
   }
 
   .propertycard_name{

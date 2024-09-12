@@ -34,7 +34,8 @@
   
 .imagepopup .left_arrow {
     left: 10px;
-    transform: rotate(180deg);
+    transform: translateY(-50%) rotate(180deg);
+    
 }
   
 .imagepopup .right_arrow {
@@ -55,4 +56,6 @@
     color: #000000;
     width: 30px;
     height: 30px;
+    border-radius: 50%;
+    background-color: red;
 }

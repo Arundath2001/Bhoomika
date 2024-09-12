@@ -44,7 +44,6 @@ function Navbar({scrollToContact}){
                         <a className="navbar_overlaylink" href="/" onClick={toggleMenu}>Home</a>
                         <a className="navbar_overlaylink" href="/properties" onClick={toggleMenu}>Properties</a>
                         <a className="navbar_overlaylink" href="/all-cities" onClick={toggleMenu}>Cities</a>
-                        <a className="navbar_overlaylink" href="/properties" onClick={toggleMenu}>Enquiry</a>
                         <a className="navbar_overlaylink" href="#contact" onClick={toggleMenu}>Contact</a>
                     </div>
 

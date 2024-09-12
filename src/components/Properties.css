@@ -14,10 +14,14 @@
 @media (max-width: 600px) {
 
   .properties_cards{
-    gap: 10px;
+    gap: 8px;
     margin-top: 10px;
   }
-  
+
+  .properties_cont{
+    gap: 15px;
+  }
+
 }
 
 

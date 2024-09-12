@@ -60,5 +60,9 @@
   .propertiespage_cont{
     padding-top: 120px;
   }
+
+  .propertiespage{
+    padding: 10px;
+  }
   
 }

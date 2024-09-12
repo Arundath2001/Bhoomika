@@ -23,6 +23,7 @@ function Home() {
     const [isPopupVisible2, SetPopupVisible2] = useState(false);
     
     const propertiesRef = useRef(null);
+    const citiesRef = useRef(null); 
 
     useEffect(() => {
         if (isPopupVisible1 || isPopupVisible2) {
@@ -58,7 +59,17 @@ function Home() {
             });
         }
     };
-    
+
+    const scrollToCities = () => {
+        if (citiesRef.current) {
+            const offset = 100;
+            const citiesTop = citiesRef.current.getBoundingClientRect().top + window.scrollY;
+            window.scrollTo({
+                top: citiesTop - offset,
+                behavior: "smooth"
+            });
+        }
+    };
 
     return (
         <div className="home">
@@ -94,15 +105,13 @@ function Home() {
                 </div>
 
                 <Avatar />
-
                 <Avatar1 />
 
-                <ScrollDown />
+                <ScrollDown onClick={scrollToCities} /> 
             </div>
 
-            <div className="home_data1">
+            <div className="home_data1" ref={citiesRef}>
                 <Cities />
-
                 <Details />
             </div>
 
