@@ -13,18 +13,11 @@
 
 @media (max-width: 600px) {
 
-  /* .properties_cards{
-    justify-self: normal;
-  }
-
-  .properties{
-    margin-top: 40px;
-  } */
-
   .properties_cards{
     gap: 10px;
     margin-top: 10px;
   }
+  
 }
 
 
