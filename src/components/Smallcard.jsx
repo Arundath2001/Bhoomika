@@ -10,9 +10,9 @@ import './Smallcard.css';
 function Smallcard(){
 
     const contactdata = [
-        {img : call , text : "7994352926"},
-        {img : mail , mail : "arundatharun44@gmail.com" , text : ""},
-        {img : loc , text : "Kozhikode, Kerala, India"}
+        {img : call , text : "+91 123456789"},
+        {img : mail , mail : "test@gmail.com" , text : ""},
+        {img : loc , text : "Kannur, Kerala, India"}
     ];
 
     return(

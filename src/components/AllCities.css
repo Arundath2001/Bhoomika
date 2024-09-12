@@ -8,10 +8,10 @@
     min-height: 100vh;
 }
 
-.allcities .cities {
+/* .allcities .cities {
     flex: 1;
     padding: 20px;
-}
+} */
 
 .allcities .cities_cont {
     display: flex;

@@ -22,7 +22,7 @@ function PropertyForm({ mode, setIsFormOpen, propertyData, onSubmit }) {
     const [numOfToilets, setNumOfToilets] = useState('');
     const [locationDetails, setLocationDetails] = useState('');
     const [plotSize, setPlotSize] = useState({ input: '', unit: 'Cent' });
-    const [budget, setBudget] = useState('');
+    const [budget, setBudget] = useState({ input: '', unit: 'Lakhs' });
     const [description, setDescription] = useState('');
     const [files, setFiles] = useState([]);
     const [previews, setPreviews] = useState([]);
@@ -42,7 +42,8 @@ function PropertyForm({ mode, setIsFormOpen, propertyData, onSubmit }) {
 
             const [input, unit] = propertyData.plotsize.split(' ');
             setPlotSize({ input: input || '', unit: unit || 'Cent' });
-            setBudget(propertyData.budget);
+            const [budgetInput, budgetUnit] = propertyData.budget.split(' ');
+            setBudget({ input: budgetInput || '', unit: budgetUnit || 'Lakhs' });
             setDescription(propertyData.description || '');
 
             setExistingImages(propertyData.imageurls || []);
@@ -98,7 +99,7 @@ function PropertyForm({ mode, setIsFormOpen, propertyData, onSubmit }) {
     };
 
     const handleSubmit = async () => {
-        if (!propertyType || !fullName || !phoneNumber || !locationDetails || !plotSize.input || !budget) {
+        if (!propertyType || !fullName || !phoneNumber || !locationDetails || !plotSize.input || !budget.input) {
             setAlertMessage({ isVisible: true, message: 'Please fill in all the required fields.', isError: true });
             return;
         }
@@ -116,6 +117,7 @@ function PropertyForm({ mode, setIsFormOpen, propertyData, onSubmit }) {
         setLoading(true);
 
         const combinedPlotSize = `${plotSize.input} ${plotSize.unit}`;
+        const combinedBudget = `${budget.input} ${budget.unit}`;
 
         const formData = new FormData();
         formData.append('propertyType', propertyType || '');
@@ -126,7 +128,7 @@ function PropertyForm({ mode, setIsFormOpen, propertyData, onSubmit }) {
         formData.append('numOfToilets', Number(numOfToilets) || 0);
         formData.append('locationDetails', locationDetails || '');
         formData.append('plotSize', combinedPlotSize || '');
-        formData.append('budget', Number(budget) || 0);
+        formData.append('budget', combinedBudget || '');
         formData.append('description', description || '');
         files.forEach(file => formData.append('files', file));
 
@@ -201,7 +203,7 @@ function PropertyForm({ mode, setIsFormOpen, propertyData, onSubmit }) {
 
                 <div className="propertyform_row2">
                     <InputDrop type="number" label="Size of Plot" required value={plotSize} onChange={(value) => setPlotSize(value)} />
-                    <InputNormal type="text" label="Budget" required value={budget} onChange={(e) => setBudget(e.target.value)} />
+                    <InputDrop type="text" label="Budget" required value={budget} onChange={(value) => setBudget(value)} />
                 </div>
 
                 <div className="propertyform_btns">

@@ -21,7 +21,7 @@ function PopupForm2({ onClose }) {
     const [numOfRooms, setNumOfRooms] = useState('');
     const [numOfToilets, setNumOfToilets] = useState('');
     const [locationDetails, setLocationDetails] = useState('');
-    const [budget, setBudget] = useState('');
+    const [budget, setBudget] = useState({ input: '', unit: 'Lakhs' });
     const [description, setDescription] = useState('');
     const [files, setFiles] = useState([]);
     const [filePreviews, setFilePreviews] = useState([]);
@@ -34,6 +34,10 @@ function PopupForm2({ onClose }) {
 
     const handlePlotSizeChange = (newValue) => {
         setPlotSize(newValue);
+    };
+
+    const handleBudgetChange = (newValue) => {
+        setBudget(newValue);
     };
 
     const handleFileChange = (event) => {
@@ -67,7 +71,7 @@ function PopupForm2({ onClose }) {
     const handleSubmit = async (e) => {
         e.preventDefault();
 
-        if (!fullName || !phone || !propertyType || !locationDetails || !plotSize.input || !budget) {
+        if (!fullName || !phone || !propertyType || !locationDetails || !plotSize.input || !budget.input) {
             setAlert({ isVisible: true, message: "Please fill in all required fields.", isError: true });
             return;
         }
@@ -85,7 +89,7 @@ function PopupForm2({ onClose }) {
         formData.append('propertyType', propertyType);
         formData.append('locationDetails', locationDetails);
         formData.append('plotSize', `${plotSize.input} ${plotSize.unit}`);
-        formData.append('budget', budget);
+        formData.append('budget', `${budget.input} ${budget.unit}`);
 
         if (propertyType === 'House' || propertyType === 'Villa') {
             formData.append('propertyName', propertyName);
@@ -102,7 +106,7 @@ function PopupForm2({ onClose }) {
         });
 
         try {
-            const response = await axios.post('https://traveling-earthy-swim.glitch.me/selling-info', formData, {
+            const response = await axios.post('http://localhost:5000/selling-info', formData, {
                 headers: {
                     'Content-Type': 'multipart/form-data'
                 }
@@ -174,8 +178,14 @@ function PopupForm2({ onClose }) {
                         onChange={handlePlotSizeChange} 
                         required 
                     />
-                    <InputNormal label="Budget" value={budget} onChange={(e) => setBudget(e.target.value)} required />
+                    <InputDrop 
+                        label="Budget" 
+                        value={budget} 
+                        onChange={handleBudgetChange} 
+                        required 
+                    />
                 </div>
+
                 <div className="popupform2_btns">
                     <ButtonNormal onClick={onClose} text="Cancel" btn_color="btn_white" />
                     <ButtonNormal text="Submit" btn_color="btn_black" type="submit" />

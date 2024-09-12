@@ -1,8 +1,16 @@
 import React from "react";
 import './InputDrop.css';
 
-function InputDrop({ id, type , label, name, value, onChange, required = false }) {
+function InputDrop({ id, type, label, name, value, onChange, required = false }) {
     const { input, unit } = value;
+
+    const handleInputChange = (e) => {
+        onChange({ ...value, input: e.target.value });
+    };
+
+    const handleSelectChange = (e) => {
+        onChange({ ...value, unit: e.target.value });
+    };
 
     return (
         <div className="inputdrop">
@@ -10,19 +18,29 @@ function InputDrop({ id, type , label, name, value, onChange, required = false }
             <div className="inputdrop_field">
                 <input
                     className="inputdrop_input"
-                    name={`${name}-input`} 
+                    name={`${name}-input`}
                     value={input}
-                    onChange={(e) => onChange({ ...value, input: e.target.value })}
+                    onChange={handleInputChange}
                     type={type}
                 />
                 <select
                     className="inputdrop_select"
-                    name={`${name}-select`} 
+                    name={`${name}-select`}
                     value={unit}
-                    onChange={(e) => onChange({ ...value, unit: e.target.value })}
+                    onChange={handleSelectChange}
                 >
-                    <option value="Cent">Cent</option>
-                    <option value="sq ft">sq ft</option>
+                    {label === "Size of Plot" ? (
+                        <>
+                            <option value="Cent">Cent</option>
+                            <option value="sq ft">sq ft</option>
+                        </>
+                    ) : (
+                        <>
+                            <option value="Lakhs">Lakhs</option>
+                            <option value="Thousands">Thousands</option>
+                            <option value="Crores">Crores</option>
+                        </>
+                    )}
                 </select>
             </div>
         </div>

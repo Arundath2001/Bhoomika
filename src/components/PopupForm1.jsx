@@ -15,7 +15,7 @@ function PopupForm1({ onClose }) {
         phone: "",
         location: "",
         plotSize: { input: "", unit: "Cent" },
-        budget: "",
+        budget: { input: "", unit: "Lakhs" },
         description: ""
     });
     const [loading, setLoading] = useState(false);
@@ -26,8 +26,8 @@ function PopupForm1({ onClose }) {
         setFormData(prevData => ({ ...prevData, [name]: value }));
     };
 
-    const handleDropChange = (newValue) => {
-        setFormData(prevData => ({ ...prevData, plotSize: newValue }));
+    const handleDropChange = (name, newValue) => {
+        setFormData(prevData => ({ ...prevData, [name]: newValue }));
     };
 
     const handleSubmit = async (e) => {
@@ -41,11 +41,13 @@ function PopupForm1({ onClose }) {
         setLoading(true);
 
         const plotSize = `${formData.plotSize.input} ${formData.plotSize.unit}`;
+        const budget = `${formData.budget.input} ${formData.budget.unit}`;
 
         try {
             await axios.post('https://traveling-earthy-swim.glitch.me/enquiries', {
                 ...formData,
-                plotSize
+                plotSize,
+                budget
             });
             setAlert({ isVisible: true, message: "Your enquiry has been submitted successfully!", isError: false });
             setTimeout(() => {
@@ -84,10 +86,18 @@ function PopupForm1({ onClose }) {
                         label="Size of Plot"
                         name="plotSize"
                         value={formData.plotSize}
-                        onChange={handleDropChange}
+                        onChange={(newValue) => handleDropChange('plotSize', newValue)}
                         required
+                        type="number"
                     />
-                    <InputNormal type="number" label="Budget" name="budget" value={formData.budget} onChange={handleNormalChange} required />
+                    <InputDrop
+                        label="Budget"
+                        name="budget"
+                        value={formData.budget}
+                        onChange={(newValue) => handleDropChange('budget', newValue)}
+                        required
+                        type="number"
+                    />
                 </div>
                 <TextArea label="Description" name="description" value={formData.description} onChange={handleNormalChange} />
                 <div className="popupform1_btns">
