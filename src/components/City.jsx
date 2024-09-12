@@ -47,6 +47,7 @@ function City({ isFormOpen, formMode, setIsFormOpen, selectedIds, setSelectedIds
                         setIsFormOpen={setIsFormOpen} 
                         mode={formMode} 
                         cityData={data.find(item => item.id === selectedIds[0])} 
+                        setSelectedIds={setSelectedIds}
                     />
                 </div>
             )}

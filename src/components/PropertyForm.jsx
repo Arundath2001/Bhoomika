@@ -13,7 +13,7 @@ import AlertMessage from "./AlertMessage";
 import LoadingScreen from "./LoadingScreen";
 import imageCompression from 'browser-image-compression';
 
-function PropertyForm({ mode, setIsFormOpen, propertyData, onSubmit }) {
+function PropertyForm({ mode, setIsFormOpen, propertyData, onSubmit, setSelectedIds }) {
     const [propertyType, setPropertyType] = useState('');
     const [fullName, setFullName] = useState('');
     const [phoneNumber, setPhoneNumber] = useState('');
@@ -96,6 +96,7 @@ function PropertyForm({ mode, setIsFormOpen, propertyData, onSubmit }) {
 
     const handleCloseForm = () => {
         setIsFormOpen(false);
+        setSelectedIds([]);
     };
 
     const handleSubmit = async () => {
@@ -143,6 +144,9 @@ function PropertyForm({ mode, setIsFormOpen, propertyData, onSubmit }) {
                     headers: { 'Content-Type': 'multipart/form-data' },
                 });
             }
+
+            setSelectedIds([]);
+
             setAlertMessage({ isVisible: true, message: 'Property submitted successfully!', isError: false });
             setTimeout(() => {
                 handleCloseForm();

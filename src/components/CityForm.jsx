@@ -8,7 +8,7 @@ import AlertMessage from "./AlertMessage";
 import LoadingScreen from "./LoadingScreen";
 import ImagePreview from "./ImagePreview";
 
-function CityForm({ mode, cityData, setIsFormOpen }) {
+function CityForm({ mode, cityData, setIsFormOpen, setSelectedIds }) {
     const [cityName, setCityName] = useState('');
     const [file, setFile] = useState(null);
     const [newPreviews, setNewPreviews] = useState([]);
@@ -26,6 +26,7 @@ function CityForm({ mode, cityData, setIsFormOpen }) {
 
     const handleCloseForm = () => {
         setIsFormOpen(false);
+        setSelectedIds([]);
     };
 
     const handleFileChange = (event) => {
@@ -73,6 +74,9 @@ function CityForm({ mode, cityData, setIsFormOpen }) {
                 });
                 setAlertMessage({ isVisible: true, message: 'City added successfully!', isError: false });
             }
+
+            setSelectedIds([]);
+            
             setTimeout(() => {
                 handleCloseForm();
                 setSelectedIds([]);

@@ -40,9 +40,12 @@ function Property({ isFormOpen, formMode, setIsFormOpen, selectedIds, setSelecte
                 console.error("Error adding property", error);
             }
         }
+        
         setIsFormOpen(false);
+            
         fetchProperties();
     };
+    
 
     const handleCheckboxChange = (id) => {
         setSelectedIds((prevSelectedIds) =>
@@ -71,6 +74,7 @@ function Property({ isFormOpen, formMode, setIsFormOpen, selectedIds, setSelecte
                         setIsFormOpen={setIsFormOpen} 
                         propertyData={properties.find(p => selectedIds.includes(p.id))} 
                         onSubmit={handleFormSubmit} 
+                        setSelectedIds={setSelectedIds} 
                     />
                 </div>
             )}
