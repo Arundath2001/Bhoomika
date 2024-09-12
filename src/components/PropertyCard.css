@@ -244,6 +244,18 @@
   .propertycard_topdata{
     padding: 0 10px;
   }
+
+  .description_popupdet{
+    font-size: 12px;
+  }
+
+  .description_popuploc{
+    font-size: 14px;
+  }
+
+  .description_popup svg{
+    font-size: 15px;
+  }
 }
 
 
