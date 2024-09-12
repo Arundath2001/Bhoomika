@@ -1,8 +1,11 @@
 import React from "react";
 import './ImageName.css';
 
-function ImageName({img , name , role}){
-    return(
+function ImageName({ img }) {
+    const name = localStorage.getItem('userName') || 'Guest';
+    const role = localStorage.getItem('userRole') || 'User';
+
+    return (
         <div className="imagename">
             <img src={img} alt="Admin Photo" />
             <div className="imagename_data">

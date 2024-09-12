@@ -11,6 +11,7 @@ import ImagePreview from "./ImagePreview";
 import axios from 'axios';
 import AlertMessage from "./AlertMessage";
 import LoadingScreen from "./LoadingScreen";
+import imageCompression from 'browser-image-compression';
 
 function PropertyForm({ mode, setIsFormOpen, propertyData, onSubmit }) {
     const [propertyType, setPropertyType] = useState('');
@@ -25,7 +26,7 @@ function PropertyForm({ mode, setIsFormOpen, propertyData, onSubmit }) {
     const [description, setDescription] = useState('');
     const [files, setFiles] = useState([]);
     const [previews, setPreviews] = useState([]);
-    const [existingImages, setExistingImages] = useState([]); // State for existing images
+    const [existingImages, setExistingImages] = useState([]);
     const [alertMessage, setAlertMessage] = useState({ isVisible: false, message: '', isError: false });
     const [loading, setLoading] = useState(false);
 
@@ -38,20 +39,45 @@ function PropertyForm({ mode, setIsFormOpen, propertyData, onSubmit }) {
             setNumOfRooms(propertyData.numofrooms);
             setNumOfToilets(propertyData.numoftoilets);
             setLocationDetails(propertyData.locationdetails);
-            
+
             const [input, unit] = propertyData.plotsize.split(' ');
             setPlotSize({ input: input || '', unit: unit || 'Cent' });
             setBudget(propertyData.budget);
             setDescription(propertyData.description || '');
-            
+
             setExistingImages(propertyData.imageurls || []);
         }
     }, [mode, propertyData]);
 
-    const handleFileChange = (e) => {
+    const handleFileChange = async (e) => {
         const selectedFiles = Array.from(e.target.files);
-        setFiles(prevFiles => [...prevFiles, ...selectedFiles]);
-        const newPreviews = selectedFiles.map(file => URL.createObjectURL(file));
+
+        if (files.length + selectedFiles.length > 6) {
+            setAlertMessage({ isVisible: true, message: 'You can only upload up to 6 images.', isError: true });
+            return;
+        }
+
+        const compressedFilesPromises = selectedFiles.map(async (file) => {
+            const options = {
+                maxSizeMB: 1,
+                maxWidthOrHeight: 800, 
+                useWebWorker: true,
+            };
+
+            try {
+                const compressedFile = await imageCompression(file, options);
+                return compressedFile;
+            } catch (error) {
+                console.error('Error compressing file', error);
+                return file; 
+            }
+        });
+
+        const compressedFiles = await Promise.all(compressedFilesPromises);
+
+        setFiles(prevFiles => [...prevFiles, ...compressedFiles]);
+
+        const newPreviews = compressedFiles.map(file => URL.createObjectURL(file));
         setPreviews(prevPreviews => [...prevPreviews, ...newPreviews]);
     };
 
@@ -77,8 +103,13 @@ function PropertyForm({ mode, setIsFormOpen, propertyData, onSubmit }) {
             return;
         }
 
-        if (propertyType === 'Land' && !description) { 
+        if (propertyType === 'Land' && !description) {
             setAlertMessage({ isVisible: true, message: 'Please provide a description for the land.', isError: true });
+            return;
+        }
+
+        if (phoneNumber.length < 10) {
+            setAlertMessage({ isVisible: true, message: 'Phone number must be at least 10 digits.', isError: true });
             return;
         }
 
@@ -96,23 +127,25 @@ function PropertyForm({ mode, setIsFormOpen, propertyData, onSubmit }) {
         formData.append('locationDetails', locationDetails || '');
         formData.append('plotSize', combinedPlotSize || '');
         formData.append('budget', Number(budget) || 0);
-        formData.append('description', description || ''); 
+        formData.append('description', description || '');
         files.forEach(file => formData.append('files', file));
 
         try {
             let response;
             if (mode === 'edit' && propertyData) {
-                response = await axios.put(`http://localhost:5000/properties/${propertyData.id}`, formData, {
+                response = await axios.put(`https://traveling-earthy-swim.glitch.me/properties/${propertyData.id}`, formData, {
                     headers: { 'Content-Type': 'multipart/form-data' },
                 });
             } else {
-                response = await axios.post('http://localhost:5000/properties', formData, {
+                response = await axios.post('https://traveling-earthy-swim.glitch.me/properties', formData, {
                     headers: { 'Content-Type': 'multipart/form-data' },
                 });
             }
-            handleCloseForm();
             setAlertMessage({ isVisible: true, message: 'Property submitted successfully!', isError: false });
-            onSubmit(response.data); 
+            setTimeout(() => {
+                handleCloseForm();
+                onSubmit(response.data);
+            }, 2000);
         } catch (error) {
             console.error("Error submitting form", error);
             setAlertMessage({ isVisible: true, message: 'Failed to submit form. Please try again.', isError: true });
@@ -140,12 +173,12 @@ function PropertyForm({ mode, setIsFormOpen, propertyData, onSubmit }) {
 
                 {(propertyType === "House" || propertyType === "Villa") && (
                     <>
-                        <InputNormal label="Full Name" required value={fullName} onChange={(e) => setFullName(e.target.value)} />
+                        <InputNormal type="text" label="Full Name" required value={fullName} onChange={(e) => setFullName(e.target.value)} />
                         <PhoneInput type="number" label="Phone Number" required value={phoneNumber} onChange={(e) => setPhoneNumber(e.target.value)} />
-                        <InputNormal label="Property Name" required value={propertyName} onChange={(e) => setPropertyName(e.target.value)} />
+                        <InputNormal type="text" label="Property Name" required value={propertyName} onChange={(e) => setPropertyName(e.target.value)} />
                         <div className="propertyform_row1">
-                            <InputNormal label="Number of Rooms" required value={numOfRooms} onChange={(e) => setNumOfRooms(e.target.value)} />
-                            <InputNormal label="Number of Toilets" required value={numOfToilets} onChange={(e) => setNumOfToilets(e.target.value)} />
+                            <InputNormal type="number" label="Number of Rooms" required value={numOfRooms} onChange={(e) => setNumOfRooms(e.target.value)} />
+                            <InputNormal type="number" label="Number of Baths" required value={numOfToilets} onChange={(e) => setNumOfToilets(e.target.value)} />
                         </div>
                         <TextArea label="Description" value={description} onChange={(e) => setDescription(e.target.value)} />
                     </>
@@ -153,8 +186,8 @@ function PropertyForm({ mode, setIsFormOpen, propertyData, onSubmit }) {
 
                 {(propertyType === "Commercial" || propertyType === "Land") && (
                     <>
-                        <InputNormal label="Full Name" required value={fullName} onChange={(e) => setFullName(e.target.value)} />
-                        <PhoneInput label="Phone Number" required value={phoneNumber} onChange={(e) => setPhoneNumber(e.target.value)} />
+                        <InputNormal type="text" label="Full Name" required value={fullName} onChange={(e) => setFullName(e.target.value)} />
+                        <PhoneInput type="number" label="Phone Number" required value={phoneNumber} onChange={(e) => setPhoneNumber(e.target.value)} />
                         <TextArea label="Description" required={propertyType === "Land"} value={description} onChange={(e) => setDescription(e.target.value)} />
                     </>
                 )}
@@ -162,13 +195,13 @@ function PropertyForm({ mode, setIsFormOpen, propertyData, onSubmit }) {
                 <TextArea label="Location Details" required value={locationDetails} onChange={(e) => setLocationDetails(e.target.value)} />
                 <InputUpload label="Upload Images" required onChange={handleFileChange} />
                 <ImagePreview
-                    previews={[...previews, ...existingImages]} // Combine new and existing images
+                    previews={[...previews, ...existingImages]}
                     onRemove={handleRemoveImage}
                 />
 
                 <div className="propertyform_row2">
-                    <InputDrop label="Size of Plot" required value={plotSize} onChange={(value) => setPlotSize(value)} />
-                    <InputNormal label="Budget" required value={budget} onChange={(e) => setBudget(e.target.value)} />
+                    <InputDrop type="number" label="Size of Plot" required value={plotSize} onChange={(value) => setPlotSize(value)} />
+                    <InputNormal type="text" label="Budget" required value={budget} onChange={(e) => setBudget(e.target.value)} />
                 </div>
 
                 <div className="propertyform_btns">

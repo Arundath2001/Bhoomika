@@ -47,32 +47,36 @@ function CityForm({ mode, cityData, setIsFormOpen }) {
     };
 
     const handleSubmit = async () => {
+        if (!cityName) {
+            setAlertMessage({ isVisible: true, message: 'City name is required.', isError: true });
+            return;
+        }
+    
         const formData = new FormData();
         formData.append('cityName', cityName);
         if (file) {
             formData.append('file', file);
         }
-
+    
         setIsLoading(true);
         setLoadingText(mode === 'edit' ? 'Updating city...' : 'Adding city...');
-
+    
         try {
             if (mode === 'edit' && cityData) {
-                await axios.put(`http://localhost:5000/cities/${cityData.id}`, formData, {
-                    headers: {
-                        'Content-Type': 'multipart/form-data',
-                    },
+                await axios.put(`https://traveling-earthy-swim.glitch.me/cities/${cityData.id}`, formData, {
+                    headers: { 'Content-Type': 'multipart/form-data' },
                 });
                 setAlertMessage({ isVisible: true, message: 'City updated successfully!', isError: false });
             } else {
-                await axios.post('http://localhost:5000/cities', formData, {
-                    headers: {
-                        'Content-Type': 'multipart/form-data',
-                    },
+                await axios.post('https://traveling-earthy-swim.glitch.me/cities', formData, {
+                    headers: { 'Content-Type': 'multipart/form-data' },
                 });
                 setAlertMessage({ isVisible: true, message: 'City added successfully!', isError: false });
             }
-            setIsFormOpen(false);
+            setTimeout(() => {
+                handleCloseForm();
+                setSelectedIds([]);
+            }, 2000);
         } catch (error) {
             console.error("Error submitting form", error);
             setAlertMessage({ isVisible: true, message: 'Failed to submit form. Please try again.', isError: true });
@@ -80,6 +84,7 @@ function CityForm({ mode, cityData, setIsFormOpen }) {
             setIsLoading(false);
         }
     };
+    
 
     return (
         <div className="cityform">
@@ -97,6 +102,7 @@ function CityForm({ mode, cityData, setIsFormOpen }) {
 
             <div className="cityform_fields">
                 <InputNormal
+                    type="text"
                     label="City Name"
                     required
                     value={cityName}

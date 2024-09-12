@@ -25,7 +25,7 @@ const Contactform = () => {
         setLoading(true);
 
         try {
-            const response = await axios.post('https://bitter-wood-beat.glitch.me//sendEmail', formData);
+            const response = await axios.post('https://traveling-earthy-swim.glitch.me/sendEmail', formData);
             console.log('Email sent:', response.data);
             setLoading(false);
             Swal.fire({

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
 import './PopupForm2.css';
 import InputNormal from "./InputNormal";
@@ -22,13 +22,11 @@ function PopupForm2({ onClose }) {
     const [numOfToilets, setNumOfToilets] = useState('');
     const [locationDetails, setLocationDetails] = useState('');
     const [budget, setBudget] = useState('');
-    const [description, setDescription] = useState(''); 
+    const [description, setDescription] = useState('');
     const [files, setFiles] = useState([]);
     const [filePreviews, setFilePreviews] = useState([]);
     const [isLoading, setIsLoading] = useState(false);
-    const [alertVisible, setAlertVisible] = useState(false);
-    const [alertMessage, setAlertMessage] = useState('');
-    const [isError, setIsError] = useState(false);
+    const [alert, setAlert] = useState({ isVisible: false, message: '', isError: false });
 
     const handlePropertyChange = (e) => {
         setPropertyType(e.target.value);
@@ -40,25 +38,45 @@ function PopupForm2({ onClose }) {
 
     const handleFileChange = (event) => {
         const selectedFiles = Array.from(event.target.files);
-        setFiles([...files, ...selectedFiles]);
+
+        if (files.length + selectedFiles.length > 6) {
+            setAlert({ isVisible: true, message: 'You can only upload up to 6 images.', isError: true });
+            return;
+        }
+
+        setFiles(prevFiles => [...prevFiles, ...selectedFiles]);
 
         const newPreviews = selectedFiles.map(file => URL.createObjectURL(file));
-        setFilePreviews([...filePreviews, ...newPreviews]);
+        setFilePreviews(prevPreviews => [...prevPreviews, ...newPreviews]);
     };
 
     const handleRemovePreview = (index) => {
-        const newFiles = [...files];
-        const newPreviews = [...filePreviews];
+        setFiles(prevFiles => {
+            const newFiles = [...prevFiles];
+            newFiles.splice(index, 1);
+            return newFiles;
+        });
 
-        newFiles.splice(index, 1);
-        newPreviews.splice(index, 1);
-
-        setFiles(newFiles);
-        setFilePreviews(newPreviews);
+        setFilePreviews(prevPreviews => {
+            const newPreviews = [...prevPreviews];
+            newPreviews.splice(index, 1);
+            return newPreviews;
+        });
     };
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+
+        if (!fullName || !phone || !propertyType || !locationDetails || !plotSize.input || !budget) {
+            setAlert({ isVisible: true, message: "Please fill in all required fields.", isError: true });
+            return;
+        }
+
+        if (phone.length < 10) {
+            setAlert({ isVisible: true, message: "Phone number must be at least 10 digits.", isError: true });
+            return;
+        }
+
         setIsLoading(true);
 
         const formData = new FormData();
@@ -84,31 +102,40 @@ function PopupForm2({ onClose }) {
         });
 
         try {
-            const response = await axios.post('https://traveling-earthy-swim.glitch.me//selling-info', formData, {
+            const response = await axios.post('https://traveling-earthy-swim.glitch.me/selling-info', formData, {
                 headers: {
                     'Content-Type': 'multipart/form-data'
                 }
             });
 
             if (response.status === 201) {
-                setAlertMessage('Form submitted successfully!');
-                setIsError(false);
-                setAlertVisible(true);
-                onClose();
+                setAlert({ isVisible: true, message: 'Form submitted successfully!', isError: false });
+                setTimeout(() => {
+                    setIsLoading(false);
+                    onClose();
+                }, 2000); 
             }
         } catch (error) {
-            setAlertMessage('Error submitting the form');
-            setIsError(true);
-            setAlertVisible(true);
-        } finally {
+            console.error("Error submitting the form", error);
+            setAlert({ isVisible: true, message: 'Error submitting the form', isError: true });
             setIsLoading(false);
         }
     };
 
+    useEffect(() => {
+        if (!isLoading && alert.isVisible) {
+            const timer = setTimeout(() => {
+                setAlert({ isVisible: false, message: '', isError: false });
+            }, 3000);
+
+            return () => clearTimeout(timer);
+        }
+    }, [isLoading, alert]);
+
     return (
         <div className="popupform2">
             <LoadingScreen isVisible={isLoading} text="Submitting your form..." />
-            <AlertMessage isVisible={alertVisible} message={alertMessage} onClose={() => setAlertVisible(false)} isError={isError} />
+            {alert.isVisible && <AlertMessage isVisible={alert.isVisible} message={alert.message} onClose={() => setAlert({ isVisible: false, message: '', isError: false })} isError={alert.isError} />}
 
             <h6>Sell Your Property Fast: Get Started Here!</h6>
 
@@ -119,10 +146,10 @@ function PopupForm2({ onClose }) {
 
                 {(propertyType === 'House' || propertyType === 'Villa') && (
                     <div className="popupform2_rowmain">
-                        <InputNormal label="Property Name" value={propertyName} onChange={(e) => setPropertyName(e.target.value)} required />
+                        <InputNormal label="Property Name" value={propertyName} onChange={(e) => setPropertyName(e.target.value)} />
                         <div className="popupform2_row1">
-                            <InputNormal label="Number of Rooms" value={numOfRooms} onChange={(e) => setNumOfRooms(e.target.value)} required />
-                            <InputNormal label="Number of Toilets" value={numOfToilets} onChange={(e) => setNumOfToilets(e.target.value)} required />
+                            <InputNormal label="Number of Rooms" value={numOfRooms} onChange={(e) => setNumOfRooms(e.target.value)} />
+                            <InputNormal label="Number of Toilets" value={numOfToilets} onChange={(e) => setNumOfToilets(e.target.value)} />
                         </div>
                     </div>
                 )}
@@ -136,7 +163,7 @@ function PopupForm2({ onClose }) {
                     required={propertyType === 'Land'} 
                 />
 
-                <InputUpload label="Upload Images/Video" onChange={handleFileChange} required />
+                <InputUpload label="Upload Images/Video" onChange={handleFileChange} />
 
                 <ImagePreview previews={filePreviews} onRemove={handleRemovePreview} />
 
@@ -149,7 +176,7 @@ function PopupForm2({ onClose }) {
                     />
                     <InputNormal label="Budget" value={budget} onChange={(e) => setBudget(e.target.value)} required />
                 </div>
-                <div className="popupform1_btns">
+                <div className="popupform2_btns">
                     <ButtonNormal onClick={onClose} text="Cancel" btn_color="btn_white" />
                     <ButtonNormal text="Submit" btn_color="btn_black" type="submit" />
                 </div>

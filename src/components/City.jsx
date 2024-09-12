@@ -9,7 +9,7 @@ function City({ isFormOpen, formMode, setIsFormOpen, selectedIds, setSelectedIds
     useEffect(() => {
         const fetchCities = async () => {
             try {
-                const response = await axios.get('http://localhost:5000/cities');
+                const response = await axios.get('https://traveling-earthy-swim.glitch.me/cities');
                 console.log(response.data);
                 setData(response.data);
             } catch (error) {

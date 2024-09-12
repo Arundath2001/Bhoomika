@@ -48,8 +48,10 @@ function PopupForm1({ onClose }) {
                 plotSize
             });
             setAlert({ isVisible: true, message: "Your enquiry has been submitted successfully!", isError: false });
-            setLoading(false);
-            onClose();
+            setTimeout(() => {
+                setLoading(false);
+                onClose();
+            }, 2000); 
         } catch (error) {
             console.error("Error submitting the form", error);
             setAlert({ isVisible: true, message: "There was an error submitting your enquiry. Please try again.", isError: true });
@@ -70,7 +72,7 @@ function PopupForm1({ onClose }) {
     return (
         <div className="popupform1">
             <LoadingScreen isVisible={loading} text="Submitting your enquiry..." />
-            {!loading && <AlertMessage isVisible={alert.isVisible} message={alert.message} onClose={() => setAlert({ isVisible: false, message: '', isError: false })} isError={alert.isError} />}
+            {alert.isVisible && <AlertMessage isVisible={alert.isVisible} message={alert.message} onClose={() => setAlert({ isVisible: false, message: '', isError: false })} isError={alert.isError} />}
             <h6>Explore Land Options: Share Your <br /> Requirements Today!</h6>
 
             <form className="popupform1_fields" onSubmit={handleSubmit}>
@@ -84,7 +86,6 @@ function PopupForm1({ onClose }) {
                         value={formData.plotSize}
                         onChange={handleDropChange}
                         required
-                        type="number"
                     />
                     <InputNormal type="number" label="Budget" name="budget" value={formData.budget} onChange={handleNormalChange} required />
                 </div>

@@ -6,7 +6,7 @@
     background: #FFFFFF;
     margin-top: 70px;
     max-height: 600px; 
-    overflow-y: scroll; 
+    overflow-y: auto; 
     scrollbar-width: thin; 
     scrollbar-color: #7F9884 #f1f1f1; 
 }
@@ -27,6 +27,25 @@
 .popupform2_row1 > * {
     flex: 1;
     width: 50%;
+}
+
+.popupform2 h6{
+    position: sticky;
+    top: 0;
+    background: #FFFFFF;
+    padding: 10px;
+    z-index: 10;
+}
+
+.popupform2_btns{
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    position: sticky;
+    bottom: 0;
+    background: #FFFFFF;
+    padding: 10px;
+    z-index: 10;
 }
 
 .popupform2_rowmain {

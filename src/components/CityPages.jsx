@@ -19,7 +19,7 @@ function CityPages() {
 
 
     useEffect(() => {
-        axios.get(`http://localhost:5000/properties/city/${cityName}`)
+        axios.get(`https://traveling-earthy-swim.glitch.me/properties/city/${cityName}`)
             .then(response => {
                 setProperties(response.data);
                 setLoading(false);
