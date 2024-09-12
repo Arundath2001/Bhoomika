@@ -49,6 +49,7 @@ function Enquiry({ setSelectedIds, dataChanged, searchQuery }) {
                         <th>ID</th>
                         <th>Full Name</th>
                         <th>Phone</th>
+                        <th>Property Type</th>
                         <th>Location</th>
                         <th>Plot Size</th>
                         <th>Budget</th>
@@ -69,6 +70,7 @@ function Enquiry({ setSelectedIds, dataChanged, searchQuery }) {
                             <td>{enquiry.id}</td>
                             <td>{enquiry.fullname}</td>
                             <td>{enquiry.phone}</td>
+                            <td>{enquiry.propertytype}</td>
                             <td>{enquiry.location}</td>
                             <td>{enquiry.plotsize}</td>
                             <td>{enquiry.budget}</td>

@@ -167,7 +167,7 @@ function PopupForm2({ onClose }) {
                     required={propertyType === 'Land'} 
                 />
 
-                <InputUpload label="Upload Images/Video" onChange={handleFileChange} />
+                <InputUpload label="Upload Images" required onChange={handleFileChange} />
 
                 <ImagePreview previews={filePreviews} onRemove={handleRemovePreview} />
 
@@ -177,12 +177,14 @@ function PopupForm2({ onClose }) {
                         value={plotSize} 
                         onChange={handlePlotSizeChange} 
                         required 
+                        type="number"
                     />
                     <InputDrop 
-                        label="Budget" 
+                        label={`Budget per ${plotSize.unit === 'Cent' ? 'Cent' : 'Sq ft'}`} 
                         value={budget} 
                         onChange={handleBudgetChange} 
                         required 
+                        type="number"
                     />
                 </div>
 

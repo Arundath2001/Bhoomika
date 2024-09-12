@@ -8,11 +8,14 @@ import ButtonNormal from "./ButtonNormal";
 import axios from "axios";
 import LoadingScreen from "./LoadingScreen";
 import AlertMessage from "./AlertMessage";
+import SelectNormal from "./SelectNormal";
+
 
 function PopupForm1({ onClose }) {
     const [formData, setFormData] = useState({
         fullName: "",
         phone: "",
+        propertyType : "",
         location: "",
         plotSize: { input: "", unit: "Cent" },
         budget: { input: "", unit: "Lakhs" },
@@ -20,6 +23,11 @@ function PopupForm1({ onClose }) {
     });
     const [loading, setLoading] = useState(false);
     const [alert, setAlert] = useState({ isVisible: false, message: '', isError: false });
+
+    const handlePropertyChange = (e) => {
+        const { value } = e.target;
+        setFormData(prevData => ({ ...prevData, propertyType: value }));
+    };
 
     const handleNormalChange = (e) => {
         const { name, value } = e.target;
@@ -49,6 +57,7 @@ function PopupForm1({ onClose }) {
                 plotSize,
                 budget
             });
+            
             setAlert({ isVisible: true, message: "Your enquiry has been submitted successfully!", isError: false });
             setTimeout(() => {
                 setLoading(false);
@@ -80,6 +89,7 @@ function PopupForm1({ onClose }) {
             <form className="popupform1_fields" onSubmit={handleSubmit}>
                 <InputNormal type="text" label="Full Name" name="fullName" value={formData.fullName} onChange={handleNormalChange} required />
                 <PhoneInput type="number" label="Phone" name="phone" value={formData.phone} onChange={handleNormalChange} required />
+                <SelectNormal value={formData.propertyType} onChange={handlePropertyChange} label="Property Type" required />
                 <InputNormal type="text" label="Preferred Location" name="location" value={formData.location} onChange={handleNormalChange} required />
                 <div className="popupform1_row">
                     <InputDrop
@@ -91,7 +101,7 @@ function PopupForm1({ onClose }) {
                         type="number"
                     />
                     <InputDrop
-                        label="Budget"
+                        label={`Budget per ${formData.plotSize.unit === 'Cent' ? 'Cent' : 'Sq ft'}`} 
                         name="budget"
                         value={formData.budget}
                         onChange={(newValue) => handleDropChange('budget', newValue)}

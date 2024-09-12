@@ -53,10 +53,10 @@ function Schedules({ setSelectedIds, dataChanged, searchQuery }) {
                 <thead>
                     <tr>
                         <th>Select</th>
+                        <th>Visit Date</th>
                         <th>Full Name</th>
                         <th>Email</th>
                         <th>Phone Number</th>
-                        <th>Visit Date</th>
                         <th>Visit Time</th>
                         <th>Property Name</th>
                         <th>Location Details</th>
@@ -72,10 +72,10 @@ function Schedules({ setSelectedIds, dataChanged, searchQuery }) {
                                     checked={selectedCheckboxes.includes(schedule.id)}
                                 />
                             </td>
+                            <td>{formatDate(schedule.visit_date)}</td>
                             <td>{schedule.fullname}</td>
                             <td>{schedule.email}</td>
                             <td>{schedule.phone_number}</td>
-                            <td>{formatDate(schedule.visit_date)}</td>
                             <td>{schedule.visit_time}</td>
                             <td>{schedule.property_name}</td>
                             <td>{schedule.location_details}</td>
