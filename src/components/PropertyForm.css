@@ -10,6 +10,15 @@
     scrollbar-color: #7F9884 #f1f1f1;
 }
 
+.propertyform_row3 {
+    display: flex;
+    gap: 10px;
+}
+
+.propertyform_row3 > * {
+    flex: 1 1 100%; 
+}
+
 .propertyform_fields {
     margin-top: 10px;
     display: flex;

@@ -89,6 +89,9 @@ function Property({ isFormOpen, formMode, setIsFormOpen, selectedIds, setSelecte
                                     <th>Property Type</th>
                                     <th>Full Name</th>
                                     <th>Phone Number</th>
+                                    <th>Rental Type</th>
+                                    <th>Commercial Type</th>
+                                    <th>Number of Bed Rooms</th>
                                     <th>Property Name</th>
                                     <th>Number of Rooms</th>
                                     <th>Number of Toilets</th>
@@ -112,6 +115,9 @@ function Property({ isFormOpen, formMode, setIsFormOpen, selectedIds, setSelecte
                                         <td>{property.propertytype || 'N/A'}</td>
                                         <td>{property.fullname || 'N/A'}</td>
                                         <td>{property.phonenumber || 'N/A'}</td>
+                                        <td>{property.rentaltype || 'N/A'}</td>
+                                        <td>{property.commercialtype || 'N/A'}</td>
+                                        <td>{property.numofbedrooms || 'N/A'}</td>
                                         <td>{property.propertyname || 'N/A'}</td>
                                         <td>{property.numofrooms !== null && property.numofrooms !== undefined ? property.numofrooms : 'N/A'}</td>
                                         <td>{property.numoftoilets !== null && property.numoftoilets !== undefined ? property.numoftoilets : 'N/A'}</td>

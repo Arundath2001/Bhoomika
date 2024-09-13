@@ -146,7 +146,7 @@ function PopupForm2({ onClose }) {
             <form className="popupform2_fields" onSubmit={handleSubmit}>
                 <InputNormal label="Full Name" value={fullName} onChange={(e) => setFullName(e.target.value)} required />
                 <PhoneInput type="number" label="Phone" value={phone} onChange={(e) => setPhone(e.target.value)} required />
-                <SelectNormal onChange={handlePropertyChange} label="Property Type" required />
+                <SelectNormal options={["Land", "Commercial", "House", "Villa", "Rental", "Farm Land", "Industrial"]} defaultOption="Select Property Type" onChange={handlePropertyChange} label="Property Type" required />
 
                 {(propertyType === 'House' || propertyType === 'Villa') && (
                     <div className="popupform2_rowmain">

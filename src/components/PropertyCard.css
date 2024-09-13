@@ -39,6 +39,18 @@
   background-color: #57C9B4;
 }
 
+.propertycard_data1.Industrial {
+  background-color: #9513C1;
+}
+
+.propertycard_data1.FarmLand{
+  background-color: #027F68;
+}
+
+.propertycard_data1.Rental{
+  background-color: #D4D48E;
+}
+
 .propertycard_data2 {
   display: none;
   align-items: center;
@@ -111,7 +123,8 @@
 
 .propertycard_details4 {
   display: flex;
-  gap: 20px;
+  gap: 10px;
+  align-items: center;
 }
 
 .propertycard_btns {

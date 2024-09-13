@@ -17,8 +17,11 @@ function PropertyForm({ mode, setIsFormOpen, propertyData, onSubmit, setSelected
     const [propertyType, setPropertyType] = useState('');
     const [fullName, setFullName] = useState('');
     const [phoneNumber, setPhoneNumber] = useState('');
+    const [commercialType, setCommercialType] = useState('');
+    const [rentalType, setRentalType] = useState('');
     const [propertyName, setPropertyName] = useState('');
     const [numOfRooms, setNumOfRooms] = useState('');
+    const [numOfBedRooms, setNumOfBedRooms] = useState('');
     const [numOfToilets, setNumOfToilets] = useState('');
     const [locationDetails, setLocationDetails] = useState('');
     const [plotSize, setPlotSize] = useState({ input: '', unit: 'Cent' });
@@ -37,6 +40,9 @@ function PropertyForm({ mode, setIsFormOpen, propertyData, onSubmit, setSelected
             setPhoneNumber(propertyData.phonenumber);
             setPropertyName(propertyData.propertyname);
             setNumOfRooms(propertyData.numofrooms);
+            setNumOfBedRooms(propertyData.numofbedrooms);
+            setCommercialType(propertyData.commercialType);
+            setRentalType(propertyData.rentalType);
             setNumOfToilets(propertyData.numoftoilets);
             setLocationDetails(propertyData.locationdetails);
 
@@ -126,21 +132,25 @@ function PropertyForm({ mode, setIsFormOpen, propertyData, onSubmit, setSelected
         formData.append('phoneNumber', phoneNumber || '');
         formData.append('propertyName', propertyName || '');
         formData.append('numOfRooms', Number(numOfRooms) || 0);
+        formData.append('numOfBedRooms', Number(numOfBedRooms) || 0);
+        formData.append('commercialType', (commercialType) || '' );
+        formData.append('rentalType', (rentalType) || '' );
         formData.append('numOfToilets', Number(numOfToilets) || 0);
         formData.append('locationDetails', locationDetails || '');
         formData.append('plotSize', combinedPlotSize || '');
         formData.append('budget', combinedBudget || '');
         formData.append('description', description || '');
         files.forEach(file => formData.append('files', file));
-
+        console.log(commercialType , rentalType);
+        
         try {
             let response;
             if (mode === 'edit' && propertyData) {
-                response = await axios.put(`https://traveling-earthy-swim.glitch.me/properties/${propertyData.id}`, formData, {
+                response = await axios.put(`http://localhost:5000/properties/${propertyData.id}`, formData, {
                     headers: { 'Content-Type': 'multipart/form-data' },
                 });
             } else {
-                response = await axios.post('https://traveling-earthy-swim.glitch.me/properties', formData, {
+                response = await axios.post('http://localhost:5000/properties', formData, {
                     headers: { 'Content-Type': 'multipart/form-data' },
                 });
             }
@@ -175,7 +185,54 @@ function PropertyForm({ mode, setIsFormOpen, propertyData, onSubmit, setSelected
             </h6>
 
             <div className="propertyform_fields">
-                <SelectNormal onChange={(e) => setPropertyType(e.target.value)} label="Property Type" value={propertyType} required />
+                <SelectNormal options={["Land", "Commercial", "House", "Villa", "Rental", "Farm Land", "Industrial"]} defaultOption="Select Property Type" onChange={(e) => setPropertyType(e.target.value)} label="Property Type" value={propertyType} required />
+
+                <div className="propertyform_row3">
+
+                {propertyType === "Commercial" && (
+                    <>
+                        <SelectNormal 
+                            options={["Plot", "Building"]} 
+                            defaultOption="Select Commercial Type" 
+                            onChange={(e) => setCommercialType(e.target.value)} 
+                            label="Commercial Type" 
+                            value={commercialType} 
+                            required 
+                        />
+                        {commercialType === "Building" && (
+                            <InputNormal 
+                                type="number" 
+                                label="Number of Rooms" 
+                                required 
+                                value={numOfRooms} 
+                                onChange={(e) => setNumOfRooms(e.target.value)} 
+                            />
+                        )}
+                    </>
+                )}
+
+                {propertyType === "Rental" && (
+                    <>
+                        <SelectNormal 
+                            options={["House", "Flat"]} 
+                            defaultOption="Select Rental Type" 
+                            onChange={(e) => setRentalType(e.target.value)} 
+                            label="Rental Type" 
+                            value={rentalType} 
+                            required 
+                        />
+
+                        <InputNormal 
+                            type="number" 
+                            label="Number of Rooms" 
+                            required 
+                            value={numOfRooms} 
+                            onChange={(e) => setNumOfRooms(e.target.value)} 
+                        />
+                    </>
+                )}
+
+                </div>
 
                 {(propertyType === "House" || propertyType === "Villa") && (
                     <>
@@ -183,14 +240,14 @@ function PropertyForm({ mode, setIsFormOpen, propertyData, onSubmit, setSelected
                         <PhoneInput type="number" label="Phone Number" required value={phoneNumber} onChange={(e) => setPhoneNumber(e.target.value)} />
                         <InputNormal type="text" label="Property Name" required value={propertyName} onChange={(e) => setPropertyName(e.target.value)} />
                         <div className="propertyform_row1">
-                            <InputNormal type="number" label="Number of Rooms" required value={numOfRooms} onChange={(e) => setNumOfRooms(e.target.value)} />
+                            <InputNormal type="number" label="Number of Bed Rooms" required value={numOfBedRooms} onChange={(e) => setNumOfBedRooms(e.target.value)} />
                             <InputNormal type="number" label="Number of Baths" required value={numOfToilets} onChange={(e) => setNumOfToilets(e.target.value)} />
                         </div>
                         <TextArea label="Description" value={description} onChange={(e) => setDescription(e.target.value)} />
                     </>
                 )}
 
-                {(propertyType === "Commercial" || propertyType === "Land") && (
+                {(propertyType === "Commercial" || propertyType === "Land" || propertyType === "Farm Land" || propertyType === "Industrial" || propertyType === "Rental") && (
                     <>
                         <InputNormal type="text" label="Full Name" required value={fullName} onChange={(e) => setFullName(e.target.value)} />
                         <PhoneInput type="number" label="Phone Number" required value={phoneNumber} onChange={(e) => setPhoneNumber(e.target.value)} />

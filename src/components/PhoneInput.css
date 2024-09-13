@@ -7,6 +7,7 @@
     outline: none;
     border: none;
     border-right: 0.5px solid #1A1A1A;
+    background-color: white;
 }
 
 .phoneinput_field input{

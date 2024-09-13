@@ -9,7 +9,7 @@ import PopupForm3 from './PopupForm3';
 import ImagePopup from './ImagePopup';
 
 const PropertyCard = ({ 
-  propertyname, imageurls, numofrooms, plotsize, locationdetails, propertyType, name, location, ratePerCent, price, beds, baths, numoftoilets, budget, description 
+  propertyname, imageurls, numofbedrooms, plotsize, locationdetails, propertyType, name, location, ratePerCent, price, beds, baths, numoftoilets, budget, description, rentaltype, commercialtype, numofrooms 
 }) => {
   const [isPopupVisible, setIsPopupVisible] = useState(false);
   const [isImagePopupVisible, setIsImagePopupVisible] = useState(false);
@@ -20,6 +20,7 @@ const PropertyCard = ({
   const imageurl = imageurls && imageurls.length > 0 ? imageurls[0] : propeg;
 
   const isVillaOrHouse = propertyType === 'Villa' || propertyType === 'House';
+  const isCommercialOrRental = propertyType === 'Commercial' || propertyType === 'Rental';
 
   useEffect(() => {
     if (isPopupVisible || isImagePopupVisible) {
@@ -45,6 +46,8 @@ const PropertyCard = ({
   const displayName = () => {
     if (propertyType === 'Land') return 'Land for Sale';
     if (propertyType === 'Commercial') return 'Property for Sale';
+    if (propertyType === 'Farm Land') return 'Farm Land for Sale';
+    if (propertyType === 'Rental') return 'Rental Property';
     return propertyname;
   };
 
@@ -100,6 +103,28 @@ const PropertyCard = ({
             <p className='propertycard_cent'>{plotsize}</p>
           </div>
 
+          <div className='propertycard_details4'>
+            {isCommercialOrRental && (
+              <>
+                
+                {
+                  rentaltype ? (<IconText border={ numofrooms > 0 ? "icontext_border" : undefined } text={`${rentaltype}`} svg={
+                    <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 256 256"><path fill="currentColor" d="M240 208h-16V96a16 16 0 0 0-16-16h-64V32a16 16 0 0 0-24.88-13.32L39.12 72A16 16 0 0 0 32 85.34V208H16a8 8 0 0 0 0 16h224a8 8 0 0 0 0-16M208 96v112h-64V96ZM48 85.34L128 32v176H48ZM112 112v16a8 8 0 0 1-16 0v-16a8 8 0 1 1 16 0m-32 0v16a8 8 0 0 1-16 0v-16a8 8 0 1 1 16 0m0 56v16a8 8 0 0 1-16 0v-16a8 8 0 0 1 16 0m32 0v16a8 8 0 0 1-16 0v-16a8 8 0 0 1 16 0"/></svg>
+                  } />) : (<IconText border={ numofrooms > 0 ? "icontext_border" : undefined } text={`${commercialtype}`} svg={
+                    <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 256 256"><path fill="currentColor" d="M240 208h-16V96a16 16 0 0 0-16-16h-64V32a16 16 0 0 0-24.88-13.32L39.12 72A16 16 0 0 0 32 85.34V208H16a8 8 0 0 0 0 16h224a8 8 0 0 0 0-16M208 96v112h-64V96ZM48 85.34L128 32v176H48ZM112 112v16a8 8 0 0 1-16 0v-16a8 8 0 1 1 16 0m-32 0v16a8 8 0 0 1-16 0v-16a8 8 0 1 1 16 0m0 56v16a8 8 0 0 1-16 0v-16a8 8 0 0 1 16 0m32 0v16a8 8 0 0 1-16 0v-16a8 8 0 0 1 16 0"/></svg>
+                  } />)
+                }
+
+                {
+                  (numofrooms > 0) && (
+                    <IconText border={"icontext_border"} text={`${numofrooms} Rooms`} svg={
+                      <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 16 16"><g fill="currentColor"><path d="M8.5 10c-.276 0-.5-.448-.5-1s.224-1 .5-1s.5.448.5 1s-.224 1-.5 1"/><path d="M10.828.122A.5.5 0 0 1 11 .5V1h.5A1.5 1.5 0 0 1 13 2.5V15h1.5a.5.5 0 0 1 0 1h-13a.5.5 0 0 1 0-1H3V1.5a.5.5 0 0 1 .43-.495l7-1a.5.5 0 0 1 .398.117M11.5 2H11v13h1V2.5a.5.5 0 0 0-.5-.5M4 1.934V15h6V1.077z"/></g></svg>                } />
+                  )
+                }
+              </>
+            )}
+          </div>
+
           <div className='propertycard_details2'>
             <IconText text={slicedLocationDetails} svg={
               <svg xmlns="http://www.w3.org/2000/svg" width="384" height="384" viewBox="0 0 48 48">
@@ -130,7 +155,7 @@ const PropertyCard = ({
           <div className='propertycard_details4'>
             {isVillaOrHouse && (
               <>
-                <IconText border={"icontext_border"} text={`${numofrooms} Beds`} svg={
+                <IconText border={"icontext_border"} text={`${numofbedrooms} Beds`} svg={
                   <svg xmlns="http://www.w3.org/2000/svg" width="614.41" height="384" viewBox="0 0 2048 1280">
                     <path fill="black" d="M256 768h1728q26 0 45 19t19 45v448h-256v-256H256v256H0V64q0-26 19-45T64 0h128q26 0 45 19t19 45zm576-320q0-106-75-181t-181-75t-181 75t-75 181t75 181t181 75t181-75t75-181m1216 256v-64q0-159-112.5-271.5T1664 256H960q-26 0-45 19t-19 45v384z"/>
                   </svg>

@@ -1,6 +1,9 @@
+@import url('https://fonts.googleapis.com/css2?family=Kumbh+Sans:wght@100..900&display=swap');
+
 .dashboard {
     display: flex;
     overflow: hidden;
+    font-family: "Kumbh Sans", sans-serif;
 }
 
 .dashboard_cont {
