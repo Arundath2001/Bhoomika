@@ -146,11 +146,11 @@ function PropertyForm({ mode, setIsFormOpen, propertyData, onSubmit, setSelected
         try {
             let response;
             if (mode === 'edit' && propertyData) {
-                response = await axios.put(`http://localhost:5000/properties/${propertyData.id}`, formData, {
+                response = await axios.put(`https://traveling-earthy-swim.glitch.me/properties/${propertyData.id}`, formData, {
                     headers: { 'Content-Type': 'multipart/form-data' },
                 });
             } else {
-                response = await axios.post('http://localhost:5000/properties', formData, {
+                response = await axios.post('https://traveling-earthy-swim.glitch.me/properties', formData, {
                     headers: { 'Content-Type': 'multipart/form-data' },
                 });
             }

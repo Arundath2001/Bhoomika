@@ -14,7 +14,7 @@ function Properties() {
   const [selectedType, setSelectedType] = useState("All Properties");
 
   useEffect(() => {
-    axios.get('http://localhost:5000/properties')
+    axios.get('https://traveling-earthy-swim.glitch.me/properties')
       .then(response => {
         setProperties(response.data);
         setLoading(false);
