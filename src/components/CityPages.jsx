@@ -7,6 +7,7 @@ import './CityPages.css';
 import Navbar from "./Navbar";
 import PropNav from "./PropNav";
 import Footer from "./Footer";
+import AlertBox from "./AlertBox";
 
 function CityPages() {
     const { cityName } = useParams();
@@ -30,7 +31,7 @@ function CityPages() {
             });
     }, [cityName]);
 
-    if (loading) return <p>Loading...</p>;
+    if (loading) return <AlertBox text="Loading..." />;
     if (error) return <p>{error}</p>;
 
     const filteredProperties = selectedType === "All Properties"

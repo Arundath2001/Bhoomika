@@ -6,6 +6,8 @@ import PropertyCard from "./PropertyCard";
 import axios from "axios";
 import LinkIcon from "./LinkIcon";
 import LoadingScreen from './LoadingScreen';
+import AlertBox from './AlertBox';
+
 
 function Properties() {
   const [properties, setProperties] = useState([]);
@@ -25,7 +27,7 @@ function Properties() {
       });      
   }, []);
 
-  if (loading) return <LoadingScreen isVisible={true} text="Loading properties..." />;
+  if (loading) return <AlertBox text = 'Loading...' />;
 
   if (error) return <p>{error}</p>;
 

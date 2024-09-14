@@ -58,7 +58,7 @@ function PropertyForm({
       setPropertyType(propertyData.propertytype);
       setFullName(propertyData.fullname);
       setPhoneNumber(propertyData.phonenumber);
-      setPropertyName(propertyData.propertyname);
+      setPropertyName(propertyData.propertyname || "");
       setNumOfRooms(propertyData.numofrooms);
       setNumOfBedRooms(propertyData.numofbedrooms);
       setCommercialType(propertyData.commercialType);
@@ -177,7 +177,6 @@ function PropertyForm({
     formData.append("propertyType", propertyType || "");
     formData.append("fullName", fullName || "");
     formData.append("phoneNumber", phoneNumber || "");
-    formData.append("propertyName", propertyName || "");
     formData.append("numOfRooms", Number(numOfRooms) || 0);
     formData.append("numOfBedRooms", Number(numOfBedRooms) || 0);
     formData.append("commercialType", commercialType || "");
@@ -196,7 +195,7 @@ function PropertyForm({
       files.forEach((file) => formData.append("files", file));
     }
 
-    console.log("Submitting form data:");
+    console.log("Property Name:", propertyName);
     for (const [key, value] of formData.entries()) {
       console.log(`${key}:`, value);
     }

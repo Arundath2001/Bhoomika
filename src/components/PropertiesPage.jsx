@@ -6,7 +6,7 @@ import PropertyCard from "./PropertyCard";
 import axios from "axios";
 import Navbar from "./Navbar";
 import Footer from "./Footer";
-import LoadingScreen from "./LoadingScreen";
+import AlertBox from "./AlertBox";
 
 function PropertiesPage() {
   const [properties, setProperties] = useState([]);
@@ -41,7 +41,7 @@ function PropertiesPage() {
     return () => window.removeEventListener('resize', updatePropertiesPerPage);
   }, []);
 
-  if (loading) return <LoadingScreen isVisible={true} text="Loading properties..." />;
+  if (loading) return <AlertBox text = 'Loading...' />;
   if (error) return <p>{error}</p>;
 
   const filteredProperties = selectedType === "All Properties"
