@@ -25,7 +25,8 @@ function Home() {
     const [heading , setHeading] = useState('');
 
     const propertiesRef = useRef(null);
-    const citiesRef = useRef(null); 
+    const citiesRef = useRef(null);
+    const contactRef = useRef(null); 
 
     useEffect(() => {
         if (isPopupVisible1 || isPopupVisible2) {
@@ -39,7 +40,6 @@ function Home() {
         setFormUrl('https://traveling-earthy-swim.glitch.me/selling-info'); 
         SetPopupVisible1(true);
         setHeading("Sell Your Property Fast: Get Started Here!");
-
     };
 
     const handleOpenPopup2 = () => {
@@ -49,7 +49,8 @@ function Home() {
             <>
                 Explore Land Options: Share Your<br />Requirements Today!
             </>
-        );    };
+        );    
+    };
 
     const handleClosePopup = () => {
         SetPopupVisible1(false);
@@ -78,9 +79,20 @@ function Home() {
         }
     };
 
+    const scrollToContact = () => {
+        if (contactRef.current) {
+            const offset = 80;
+            const contactTop = contactRef.current.getBoundingClientRect().top + window.scrollY;
+            window.scrollTo({
+                top: contactTop - offset,
+                behavior: "smooth"
+            });
+        }
+    };
+
     return (
         <div className="home">
-            <Navbar />
+            <Navbar scrollToContact={scrollToContact} />
             <div className="home_top">
                 <div className="home_head">
                     <h2>Discover Your <br /> Dream Place</h2>
@@ -130,7 +142,7 @@ function Home() {
 
             <Reviews />
 
-            <div id="contact">
+            <div id="contact" ref={contactRef}>
                 <Contact />
             </div>
 

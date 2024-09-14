@@ -30,6 +30,9 @@
     font-weight: 500;
     color: #1A1A1A;
     text-decoration: none;
+    border: none;
+    background: none;
+    cursor: pointer;
 }
 
 .navbar_contact{
@@ -96,6 +99,8 @@
     width: 100%;
     text-align: center;
     box-sizing: border-box;
+    background: none;
+    border: none;
 }
 
 .navbar_overlaylink:hover{

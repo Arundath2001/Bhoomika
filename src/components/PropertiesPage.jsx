@@ -14,7 +14,7 @@ function PropertiesPage() {
   const [error, setError] = useState(null);
   const [selectedType, setSelectedType] = useState("All Properties");
   const [currentPage, setCurrentPage] = useState(1);
-  const propertiesPerPage = 9;
+  const [propertiesPerPage, setPropertiesPerPage] = useState(9);
 
   useEffect(() => {
     axios.get('https://traveling-earthy-swim.glitch.me/properties')
@@ -26,6 +26,19 @@ function PropertiesPage() {
         setError("Error fetching properties");
         setLoading(false);
       });
+
+    const updatePropertiesPerPage = () => {
+      if (window.innerWidth <= 768) {
+        setPropertiesPerPage(10);
+      } else {
+        setPropertiesPerPage(9);
+      }
+    };
+
+    updatePropertiesPerPage();
+    window.addEventListener('resize', updatePropertiesPerPage);
+
+    return () => window.removeEventListener('resize', updatePropertiesPerPage);
   }, []);
 
   if (loading) return <LoadingScreen isVisible={true} text="Loading properties..." />;
@@ -79,14 +92,18 @@ function PropertiesPage() {
                 key={property.id}
                 propertyname={property.propertyname}
                 propertyType={property.propertytype}
+                commercialtype={property.commercialtype}
+                rentaltype={property.rentaltype}
+                numofrooms={property.numofrooms}
                 fullname={property.fullname}
                 locationdetails={property.locationdetails}
                 plotsize={property.plotsize}
                 budget={property.budget}
                 imageurls={property.imageurls} 
                 updateddate={property.updateddate}
-                numofrooms={property.numofrooms}
+                numofbedrooms={property.numofbedrooms}
                 numoftoilets={property.numoftoilets}
+                description={property.description}
               />
             ))
           ) : (
