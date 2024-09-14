@@ -77,7 +77,7 @@ function PopupForm3({ onClose, propertyDetails }) {
                     <TimeInput label="Time" value={visitTime} onChange={setVisitTime} required />
                 </div>
 
-                <div className="popupform1_btns">
+                <div className="propertyform_btns">
                     <ButtonNormal onClick={onClose} text="Cancel" btn_color="btn_white" />
                     <ButtonNormal type="submit" text="Submit" btn_color="btn_black" />
                 </div>

@@ -86,7 +86,7 @@ function Home() {
                     <h2>Discover Your <br /> Dream Place</h2>
                     <p>Find the perfect property that meets all your needs and desires.</p>
                 </div>
-
+            
                 <div className="home_btn">
                     <ButtonMain
                         bgColor="buttonmain_black"

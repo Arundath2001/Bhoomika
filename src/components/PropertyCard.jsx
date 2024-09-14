@@ -174,7 +174,7 @@ const PropertyCard = ({
       </div>
 
       {isPopupVisible && (
-        <div className='home_popupform1'>
+        <div className='home_popupform'>
           <PopupForm3
             onClose={handleClosePopup}
             propertyDetails={{

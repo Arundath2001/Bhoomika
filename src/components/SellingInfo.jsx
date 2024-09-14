@@ -68,7 +68,10 @@ function SellingInfo({ setSelectedIds, dataChanged, searchQuery }) {
                                 <th>Full Name</th>
                                 <th>Phone</th>
                                 <th>Property Type</th>
+                                <th>Commercial Type</th>
+                                <th>Rental Type</th>
                                 <th>Property Name</th>
+                                <th>Number of Bed Rooms</th>
                                 <th>Number of Rooms</th>
                                 <th>Number of Toilets</th>
                                 <th>Location Details</th>
@@ -94,7 +97,10 @@ function SellingInfo({ setSelectedIds, dataChanged, searchQuery }) {
                                         <td>{handleEmptyField(info.fullname)}</td>
                                         <td>{handleEmptyField(info.phone)}</td>
                                         <td>{handleEmptyField(info.propertytype)}</td>
+                                        <td>{handleEmptyField(info.commercialtype)}</td>
+                                        <td>{handleEmptyField(info.rentaltype)}</td>
                                         <td>{handleEmptyField(info.propertyname)}</td>
+                                        <td>{handleEmptyField(info.numofbedrooms)}</td>
                                         <td>{handleEmptyField(info.numofrooms)}</td>
                                         <td>{handleEmptyField(info.numoftoilets)}</td>
                                         <td>{handleEmptyField(info.locationdetails)}</td>

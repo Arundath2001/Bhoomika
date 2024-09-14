@@ -356,11 +356,7 @@ function PropertyForm({
                 onChange={(e) => setNumOfToilets(e.target.value)}
               />
             </div>
-            <TextArea
-              label="Description"
-              value={description}
-              onChange={(e) => setDescription(e.target.value)}
-            />
+
           </>
         )}
 
@@ -384,12 +380,7 @@ function PropertyForm({
               value={phoneNumber}
               onChange={(e) => setPhoneNumber(e.target.value)}
             />
-            <TextArea
-              label="Description"
-              required={propertyType === "Land"}
-              value={description}
-              onChange={(e) => setDescription(e.target.value)}
-            />
+          
           </>
         )}
 
@@ -399,6 +390,14 @@ function PropertyForm({
           value={locationDetails}
           onChange={(e) => setLocationDetails(e.target.value)}
         />
+
+        <TextArea
+          label="Description"
+          required={propertyType === "Land"}
+          value={description}
+          onChange={(e) => setDescription(e.target.value)}
+        />
+
         {showImageUpload && (
           <>
             <InputUpload

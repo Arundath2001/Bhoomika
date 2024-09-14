@@ -6,6 +6,15 @@ function Enquiry({ setSelectedIds, dataChanged, searchQuery }) {
     const [enquiries, setEnquiries] = useState([]);
     const [selectedCheckboxes, setSelectedCheckboxes] = useState([]);
 
+    function formatDate(dateStr) {
+        const date = new Date(dateStr);
+        const day = String(date.getDate()).padStart(2, '0');
+        const month = String(date.getMonth() + 1).padStart(2, '0');
+        const year = date.getFullYear();
+    
+        return `${day}/${month}/${year}`;
+    }
+
     useEffect(() => {
         const fetchEnquiries = async () => {
             try {
@@ -36,6 +45,7 @@ function Enquiry({ setSelectedIds, dataChanged, searchQuery }) {
 
         return fullname.includes(query);
     });
+    
 
     return (
         <div className="enquiry">
@@ -46,11 +56,14 @@ function Enquiry({ setSelectedIds, dataChanged, searchQuery }) {
                 <thead>
                     <tr>
                         <th>Select</th>
-                        <th>ID</th>
                         <th>Full Name</th>
                         <th>Phone</th>
                         <th>Property Type</th>
-                        <th>Location</th>
+                        <th>Commercial Type</th>
+                        <th>Rental Type</th>
+                        <th>Number of Bed Rooms</th>
+                        <th>Number of Bathsrooms</th>
+                        <th>Location Details</th>
                         <th>Plot Size</th>
                         <th>Budget</th>
                         <th>Description</th>
@@ -67,15 +80,18 @@ function Enquiry({ setSelectedIds, dataChanged, searchQuery }) {
                                     checked={selectedCheckboxes.includes(enquiry.id)}
                                 />
                             </td>
-                            <td>{enquiry.id}</td>
                             <td>{enquiry.fullname}</td>
                             <td>{enquiry.phone}</td>
                             <td>{enquiry.propertytype}</td>
-                            <td>{enquiry.location}</td>
+                            <td>{enquiry.commercialtype}</td>
+                            <td>{enquiry.rentaltype}</td>
+                            <td>{enquiry.numofbedrooms}</td>
+                            <td>{enquiry.numoftoilets}</td>
+                            <td>{enquiry.locationdetails}</td>
                             <td>{enquiry.plotsize}</td>
                             <td>{enquiry.budget}</td>
                             <td>{enquiry.description}</td>
-                            <td>{new Date(enquiry.submittedDate).toLocaleDateString()}</td>
+                            <td>{formatDate(enquiry.submitteddate)}</td>
                         </tr>
                     ))}
                 </tbody>
