@@ -9,7 +9,7 @@ function Enquiry({ setSelectedIds, dataChanged, searchQuery }) {
     useEffect(() => {
         const fetchEnquiries = async () => {
             try {
-                const response = await axios.get('https://traveling-earthy-swim.glitch.me//enquiries');
+                const response = await axios.get('https://traveling-earthy-swim.glitch.me/enquiries');
                 console.log('Enquiries response:', response.data);
                 setEnquiries(response.data);
             } catch (error) {

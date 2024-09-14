@@ -157,7 +157,7 @@ function TopNavbar({ activeTab, setFormMode, setIsFormOpen, selectedIds, setSele
             </div>
 
             {isDeletePopupVisible && (
-                <div className="home_popupform1">
+                <div className="home_popupform">
                     <DeletePopup onCancel={handleCancelDelete} onDelete={handleConfirmDelete} />
                 </div>    
             )}

@@ -13,15 +13,17 @@ import BlackCard from "./BlackCard";
 import Properties from "./Properties";
 import Reviews from "./Reviews";
 import Contact from "./Contact";
-import PopupForm1 from "./PopupForm1";
-import PopupForm2 from "./PopupForm2";
 import Navbar from "./Navbar";
 import Footer from "./Footer";
+import PropertyForm from "./PropertyForm"; 
+import AlertBox from "./AlertBox";
 
 function Home() {
     const [isPopupVisible1, SetPopupVisible1] = useState(false);
     const [isPopupVisible2, SetPopupVisible2] = useState(false);
-    
+    const [formUrl, setFormUrl] = useState(''); 
+    const [heading , setHeading] = useState('');
+
     const propertiesRef = useRef(null);
     const citiesRef = useRef(null); 
 
@@ -34,18 +36,23 @@ function Home() {
     }, [isPopupVisible1, isPopupVisible2]);
 
     const handleOpenPopup1 = () => {
+        setFormUrl('https://traveling-earthy-swim.glitch.me/selling-info'); 
         SetPopupVisible1(true);
-    };
+        setHeading("Sell Your Property Fast: Get Started Here!");
 
-    const handleClosePopup1 = () => {
-        SetPopupVisible1(false);
     };
 
     const handleOpenPopup2 = () => {
+        setFormUrl('https://traveling-earthy-swim.glitch.me/enquiries'); 
         SetPopupVisible2(true);
-    };
+        setHeading(
+            <>
+                Explore Land Options: Share Your<br />Requirements Today!
+            </>
+        );    };
 
-    const handleClosePopup2 = () => {
+    const handleClosePopup = () => {
+        SetPopupVisible1(false);
         SetPopupVisible2(false);
     };
 
@@ -89,14 +96,14 @@ function Home() {
                         onClick={scrollToProperties}
                     />
                     <ButtonMain
-                        onClick={handleOpenPopup2}
+                        onClick={handleOpenPopup1}
                         bgColor="buttonmain_black"
                         textColor="buttonmain_whitetxt"
                         value="Sell Properties"
                         img={cart}
                     />
                     <ButtonMain
-                        onClick={handleOpenPopup1}
+                        onClick={handleOpenPopup2}
                         bgColor="buttonmain_black"
                         textColor="buttonmain_whitetxt"
                         value="Enquiry"
@@ -124,18 +131,21 @@ function Home() {
             <Reviews />
 
             <div id="contact">
-            <Contact />
+                <Contact />
             </div>
 
-            {isPopupVisible1 && (
-                <div className="home_popupform1">
-                    <PopupForm1 onClose={handleClosePopup1} />
-                </div>
-            )}
-
-            {isPopupVisible2 && (
-                <div className="home_popupform1">
-                    <PopupForm2 onClose={handleClosePopup2} />
+            {( isPopupVisible1 || isPopupVisible2 ) && (
+                <div className="home_popupform">
+                    <PropertyForm 
+                        mode="add"
+                        setIsFormOpen={handleClosePopup} 
+                        submitUrl={formUrl} 
+                        setSelectedIds={() => {}}
+                        showImageUpload={isPopupVisible1}
+                        showPropertyName={isPopupVisible1}
+                        heading={heading}
+                        showContactMessage={true} 
+                    />
                 </div>
             )}
 

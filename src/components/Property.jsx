@@ -23,7 +23,7 @@ function Property({ isFormOpen, formMode, setIsFormOpen, selectedIds, setSelecte
     const handleFormSubmit = async (propertyDetails) => {
         if (formMode === "edit") {
             try {
-                await axios.put(`https://traveling-earthy-swim.glitch.me//properties/${propertyDetails.id}`, propertyDetails);
+                await axios.put(`https://traveling-earthy-swim.glitch.me/properties/${propertyDetails.id}`, propertyDetails);
                 setProperties((prevProperties) =>
                     prevProperties.map((prop) =>
                         prop.id === propertyDetails.id ? propertyDetails : prop
@@ -34,7 +34,7 @@ function Property({ isFormOpen, formMode, setIsFormOpen, selectedIds, setSelecte
             }
         } else {
             try {
-                const response = await axios.post('https://traveling-earthy-swim.glitch.me//properties', propertyDetails);
+                const response = await axios.post('https://traveling-earthy-swim.glitch.me/properties', propertyDetails);
                 setProperties((prevProperties) => [...prevProperties, response.data]);
             } catch (error) {
                 console.error("Error adding property", error);
@@ -46,7 +46,6 @@ function Property({ isFormOpen, formMode, setIsFormOpen, selectedIds, setSelecte
         fetchProperties();
     };
     
-
     const handleCheckboxChange = (id) => {
         setSelectedIds((prevSelectedIds) =>
             prevSelectedIds.includes(id)
@@ -63,6 +62,8 @@ function Property({ isFormOpen, formMode, setIsFormOpen, selectedIds, setSelecte
         return propertyName.includes(query) || fullName.includes(query);
     });
 
+    const selectedProperty = properties.find(p => selectedIds.includes(p.id));
+
     return (
         <div className="Property">
             <h1>Property</h1>
@@ -72,9 +73,16 @@ function Property({ isFormOpen, formMode, setIsFormOpen, selectedIds, setSelecte
                     <PropertyForm 
                         mode={formMode} 
                         setIsFormOpen={setIsFormOpen} 
-                        propertyData={properties.find(p => selectedIds.includes(p.id))} 
+                        propertyData={selectedProperty} 
                         onSubmit={handleFormSubmit} 
                         setSelectedIds={setSelectedIds} 
+                        submitUrl="https://traveling-earthy-swim.glitch.me/properties"
+                        showImageUpload={true}
+                        span="Add"
+                        heading="a New Property"
+                        setRequired={true}
+                        showPropertyName={true}
+                        showContactMessage={false}
                     />
                 </div>
             )}
