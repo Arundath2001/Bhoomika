@@ -16,18 +16,6 @@ function PropNav({ selectedType, onSelect }) {
                     All Properties
                 </div>
                 <div
-                    className={selectedType === "Commercial" ? "active" : ""}
-                    onClick={() => handleSelect("Commercial")}
-                >
-                    Commercial
-                </div>
-                <div
-                    className={selectedType === "Land" ? "active" : ""}
-                    onClick={() => handleSelect("Land")}
-                >
-                    Lands
-                </div>
-                <div
                     className={selectedType === "House" ? "active" : ""}
                     onClick={() => handleSelect("House")}
                 >
@@ -39,6 +27,18 @@ function PropNav({ selectedType, onSelect }) {
                 >
                     Villa
                 </div>
+                <div
+                    className={selectedType === "Land" ? "active" : ""}
+                    onClick={() => handleSelect("Land")}
+                >
+                    Lands
+                </div>
+                <div
+                    className={selectedType === "Commercial" ? "active" : ""}
+                    onClick={() => handleSelect("Commercial")}
+                >
+                    Commercial
+                </div>                
                 <div
                     className={selectedType === "Rental" ? "active" : ""}
                     onClick={() => handleSelect("Rental")}
