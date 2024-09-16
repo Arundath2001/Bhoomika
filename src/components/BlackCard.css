@@ -20,9 +20,13 @@
     }
 }
 
-@media (min-width: 768px) and (max-width: 1024px) {
+@media (min-width: 600px) and (max-width: 1024px) {
     .blackcard{
         padding: 50px 30px;
         margin: 50px 30px;
+    }
+
+    .blackcard_text{
+        font-size: 20px;
     }
 }
