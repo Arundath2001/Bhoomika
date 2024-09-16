@@ -29,6 +29,7 @@
   flex-wrap: wrap;
   justify-content: center;
   gap: 45px;
+  flex: 1;
 }
 
 .pagination {
