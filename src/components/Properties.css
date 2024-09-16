@@ -1,3 +1,29 @@
+.propertiespage {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.properties {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.propertiespage_cont {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.properties_cont {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
 .properties_cards {
   display: flex;
   flex-wrap: wrap;
@@ -5,23 +31,27 @@
   gap: 45px;
 }
 
-.properties_cont {
+.pagination {
+  margin-top: auto;
   display: flex;
-  flex-direction: column;
-  gap: 10px;
+  justify-content: center;
+  gap: 5px;
+}
+
+.footer {
+  background-color: #f1f1f1;
+  text-align: center;
+  padding: 10px;
+  margin-top: auto;
 }
 
 @media (max-width: 600px) {
-
-  .properties_cards{
+  .properties_cards {
     gap: 8px;
     margin-top: 10px;
   }
 
-  .properties_cont{
+  .properties_cont {
     gap: 15px;
   }
-
 }
-
-

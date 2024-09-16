@@ -13,3 +13,7 @@
     padding: 40px;
     overflow: hidden;
 }
+
+.dashboard h1{
+    font-size: 25px;
+}
