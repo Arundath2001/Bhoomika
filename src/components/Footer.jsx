@@ -1,10 +1,13 @@
 import React from "react";
 import './Footer.css';
 import logo1 from "../assets/mainlogo.png";
+import { useNavigate } from "react-router-dom";
+
 
 function Footer() {
 
     const currentYear = new Date().getFullYear();
+    const navigate = useNavigate();
 
     const scrollToTop = () => {
         window.scrollTo({
@@ -13,13 +16,30 @@ function Footer() {
         });
     };
 
+    const handleNavigationClick = (path) => {
+        if (path === 'contact') {
+            navigate('/'); 
+            setTimeout(() => {
+                const contactSection = document.getElementById("contact");
+                if (contactSection) {
+                    contactSection.scrollIntoView({ behavior: "smooth" });
+                }
+            }, 100);      
+        } else {
+            navigate(path);        
+            if (path === '/') {
+                window.scrollTo({ top: 0, behavior: 'smooth' }); 
+            }
+        }
+    };
+
     return (
         <div className="footer">
 
             <div className="footer_links">
                 <a className="footer_link" href="/">Home</a>
                 <a className="footer_link" href="/properties">Properties</a>
-                <a href="#contact">Contact</a>
+                <a onClick={() => handleNavigationClick('contact')}>Contact</a>
             </div>
 
             <div className="footer_cont">

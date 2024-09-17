@@ -34,7 +34,6 @@ const PropertyCard = ({
     const handleResize = () => {
       const maxLength = window.innerWidth < 600 ? 10 : 25;
       setSlicedLocationDetails(locationdetails.length <= maxLength ? locationdetails : `${locationdetails.substring(0, maxLength)}...`);
-      console.log(plotsize);
     };
 
     handleResize();
@@ -67,7 +66,6 @@ const PropertyCard = ({
 
   const getRateLabel = () => {
     if (plotsize.toLowerCase().includes('sq')) return 'Rate per sq ft';
-    console.log(plotsize.toLowerCase());
     
     if (plotsize.toLowerCase().includes('acre')) return 'Rate per acre';
     return 'Rate per cent';    

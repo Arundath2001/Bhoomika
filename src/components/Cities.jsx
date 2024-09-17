@@ -13,12 +13,10 @@ function Cities() {
     useEffect(() => {
         const fetchCities = async () => {
             try {
-                console.log('Fetching cities...');
                 const response = await fetch('https://traveling-earthy-swim.glitch.me/cities');
                 if (response.ok) {
                     const data = await response.json();
                     setCities(data);
-                    console.log('Cities fetched:', data);
                 } else {
                     setError('Failed to fetch cities');
                 }
@@ -26,7 +24,6 @@ function Cities() {
                 setError('Error fetching cities');
             } finally {
                 setLoading(false);
-                console.log('Loading state set to false');
             }
         };
     

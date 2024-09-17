@@ -19,7 +19,10 @@ function Navbar({ scrollToContact }) {
         if (path === 'contact') {
             navigate('/'); 
             setTimeout(() => {
-                scrollToContact();
+                const contactSection = document.getElementById("contact");
+                if (contactSection) {
+                    contactSection.scrollIntoView({ behavior: "smooth" });
+                }
             }, 100);      
         } else {
             navigate(path);        
