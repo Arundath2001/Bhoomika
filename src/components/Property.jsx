@@ -83,6 +83,7 @@ function Property({ isFormOpen, formMode, setIsFormOpen, selectedIds, setSelecte
                         setRequired={true}
                         showPropertyName={true}
                         showContactMessage={false}
+                        setName={true}
                     />
                 </div>
             )}

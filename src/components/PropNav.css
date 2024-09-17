@@ -1,5 +1,32 @@
+.propnav-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    width: 40%;
+    margin: auto;
+    margin-top: 55px;
+}
+
+.scroll-button {
+    background: none;
+    outline: none;
+    border: none;
+    cursor: pointer;
+    padding: 10px;
+    z-index: 1;
+}
+
+.scroll-button.left {
+    left: 20px; 
+}
+
+.scroll-button.right {
+    right: 20px;
+}
+
 .propnav-container {
-    width: 40%; 
+    width: calc(100% - 80px); 
     overflow-x: auto; 
     white-space: nowrap; 
     scrollbar-width: none;
@@ -9,10 +36,8 @@
 .propnav {
     display: inline-flex;
     gap: 20px;
-    margin-top: 55px;
     justify-content: flex-start; 
     padding: 0 10px; 
-    margin-bottom: 10px;
 }
 
 .propnav div {
@@ -26,6 +51,10 @@
     transition: border-color 0.3s ease;
     cursor: pointer;
     white-space: nowrap; 
+}
+
+.propnav-wrapper svg{
+    font-size: x-large;
 }
 
 .propnav div.active {
@@ -49,12 +78,16 @@
 @media only screen and (max-width: 600px) {
     
     .propnav-container{
-        width: 80%;
+        width: calc(100% - 80px); 
+    }
+
+    .propnav-wrapper{
+        margin-top: 20px;
+        width: 100%;
     }
 
     .propnav {
         gap: 15px;
-        margin-top: 25px;
     }
 
     .propnav div {
@@ -65,6 +98,6 @@
 
 @media (min-width: 600px) and (max-width: 1024px) {
     .propnav-container{
-        width: 60%;
+        width: calc(100% - 80px); 
     }
 }

@@ -26,7 +26,8 @@ function PropertyForm({
   heading,
   setRequired,
   showPropertyName,
-  showContactMessage
+  showContactMessage,
+  setName
 }) {
   const [propertyType, setPropertyType] = useState("");
   const [fullName, setFullName] = useState("");
@@ -318,7 +319,7 @@ function PropertyForm({
           <>
             <InputNormal
               type="text"
-              label="Full Name"
+              label={setName ? 'Property Holder Name' : 'Full Name'}
               required
               value={fullName}
               onChange={(e) => setFullName(e.target.value)}
@@ -367,7 +368,7 @@ function PropertyForm({
           <>
             <InputNormal
               type="text"
-              label="Full Name"
+              label={setName ? 'Property Holder Name' : 'Full Name'}
               required
               value={fullName}
               onChange={(e) => setFullName(e.target.value)}
@@ -422,7 +423,7 @@ function PropertyForm({
           />
           <InputDrop
             type="number"
-            label="Budget"
+            label={`Budget per ${plotSize.unit === 'Cent' ? 'Cent' : 'Sq ft'}`}
             required={setRequired ? true : false}
             value={budget}
             onChange={(value) => setBudget(value)}

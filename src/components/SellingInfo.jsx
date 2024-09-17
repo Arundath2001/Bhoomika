@@ -20,6 +20,15 @@ function SellingInfo({ setSelectedIds, dataChanged, searchQuery }) {
         fetchSellingInfo();
     }, [dataChanged]);
 
+    function formatDate(dateStr) {
+        const date = new Date(dateStr);
+        const day = String(date.getDate()).padStart(2, '0');
+        const month = String(date.getMonth() + 1).padStart(2, '0');
+        const year = date.getFullYear();
+    
+        return `${day}/${month}/${year}`;
+    }
+
     const handleCheckboxChange = (id) => {
         setSelectedCheckboxes(prevState => {
             const newState = prevState.includes(id)
@@ -106,7 +115,7 @@ function SellingInfo({ setSelectedIds, dataChanged, searchQuery }) {
                                         <td>{handleEmptyField(info.locationdetails)}</td>
                                         <td>{handleEmptyField(info.plotsize)}</td>
                                         <td>{handleEmptyField(info.budget)}</td>
-                                        <td>{handleEmptyField(info.updateddate)}</td>
+                                        <td>{formatDate(info.updateddate)}</td>
                                         <td>{handleEmptyField(info.description)}</td> 
                                         <td className="table_images">
                                             {imageUrls.length > 0 ? (

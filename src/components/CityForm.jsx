@@ -114,7 +114,7 @@ function CityForm({ mode, cityData, setIsFormOpen, setSelectedIds }) {
                 />
                 <InputUpload
                     label="Upload Images"
-                    required={false}
+                    required={true}
                     onChange={handleFileChange}
                 />
                 <ImagePreview
