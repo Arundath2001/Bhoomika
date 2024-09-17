@@ -38,11 +38,10 @@
 
 @media (min-width: 600px) and (max-width: 1024px) {
   .contact{
-    margin: 20px 120px;
+    margin: 20px;
   }
 
   .contact_data {
-    flex-direction: column;
-    gap: 0;
+    gap: 20px;
 }
 }

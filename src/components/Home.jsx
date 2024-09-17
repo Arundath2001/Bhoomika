@@ -59,7 +59,7 @@ function Home() {
 
     const scrollToProperties = () => {
         if (propertiesRef.current) {
-            const offset = 80;
+            const offset = 100;
             const propertiesTop = propertiesRef.current.getBoundingClientRect().top + window.scrollY;
             window.scrollTo({
                 top: propertiesTop - offset,
@@ -81,7 +81,7 @@ function Home() {
 
     const scrollToContact = () => {
         if (contactRef.current) {
-            const offset = 80;
+            const offset = 180;
             const contactTop = contactRef.current.getBoundingClientRect().top + window.scrollY;
             window.scrollTo({
                 top: contactTop - offset,

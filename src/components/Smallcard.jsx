@@ -10,8 +10,8 @@ import './Smallcard.css';
 function Smallcard(){
 
     const contactdata = [
-        {img : call , text : "+91 123456789"},
-        {img : mail , mail : "test@gmail.com" , text : ""},
+        {img : call , tel : "+91 8129677597"},
+        {img : mail , mail : "dilna@bhoomikarealestate.com" , text : ""},
         {img : loc , text : "Kannur, Kerala, India"}
     ];
 
@@ -24,7 +24,7 @@ function Smallcard(){
             <div className="smallcard_down">
                 {
                     contactdata.map((data , index)=>(
-                        <Iconpara addclass="smallcard_text" key={index} img={data.img} text={data.text} mail={data.mail} />
+                        <Iconpara addclass="smallcard_text" key={index} tel={data.tel} img={data.img} text={data.text} mail={data.mail} />
                     ))
                 }
             </div>

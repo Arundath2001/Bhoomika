@@ -57,17 +57,18 @@
     gap: 40px;
   }
 
-  @media (max-width: 1024px) {
+  @media (min-width: 600px) and (max-width: 1024px) {
     .contactform_top1, 
   .contactform_top2{
     flex-direction: row;
+    gap: 20px;
   }
 
-  .contactform_btn{
+  /* .contactform_btn{
     justify-content: center;
     flex-direction: column;
     flex: 1;
-  }
+  } */
 
   .contactform button{
     border-radius: 16px;
@@ -75,6 +76,10 @@
 }
 
 @media (max-width: 600px) {
+
+  .contactform label{
+    font-size: 13px;
+  }
 
   .contactform{
     margin-top: 40px;

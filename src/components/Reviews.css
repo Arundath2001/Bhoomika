@@ -63,4 +63,9 @@
     .reviews_top{
         margin: auto 80px;
     }
+
+    .reviews_cards{
+        gap: 30px;
+        margin-top: 20px;
+    }
 }

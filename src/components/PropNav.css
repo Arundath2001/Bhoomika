@@ -1,4 +1,4 @@
-.propnav-wrapper {
+.propnav {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -8,7 +8,7 @@
     margin-top: 55px;
 }
 
-.scroll-button {
+.propnav_btn {
     background: none;
     outline: none;
     border: none;
@@ -17,11 +17,11 @@
     z-index: 1;
 }
 
-.scroll-button.left {
+.propnav_btn.left {
     left: 20px; 
 }
 
-.scroll-button.right {
+.propnav_btn.right {
     right: 20px;
 }
 
@@ -33,14 +33,14 @@
     margin: auto;
 }
 
-.propnav {
+.propnav_links {
     display: inline-flex;
     gap: 20px;
     justify-content: flex-start; 
     padding: 0 10px; 
 }
 
-.propnav div {
+.propnav_links div {
     text-decoration: none;
     font-size: 16px;
     font-weight: 700;
@@ -53,11 +53,12 @@
     white-space: nowrap; 
 }
 
-.propnav-wrapper svg{
+.propnav svg{
     font-size: x-large;
+    color: #706f6f;
 }
 
-.propnav div.active {
+.propnav_links div.active {
     border-color: #1A1A1A;
     background-color: #FFF8F6;
 }
@@ -81,23 +82,38 @@
         width: calc(100% - 80px); 
     }
 
-    .propnav-wrapper{
+    .propnav{
         margin-top: 20px;
         width: 100%;
     }
 
-    .propnav {
+    .propnav_links {
         gap: 15px;
     }
 
-    .propnav div {
+    .propnav_links div {
         font-size: 10px;
         padding: 6px;
     }
 }
 
 @media (min-width: 600px) and (max-width: 1024px) {
+
     .propnav-container{
         width: calc(100% - 80px); 
+    }
+
+    .propnav{
+        margin-top: 20px;
+        width: 60%;
+    }
+
+    .propnav_links {
+        gap: 15px;
+    }
+
+    .propnav_links div {
+        font-size: 10px;
+        padding: 6px;
     }
 }

@@ -30,7 +30,7 @@ function Reviews() {
 
     useEffect(() => {
         let interval;
-        if (deviceType === 'mobile' || deviceType === 'tablet') {
+        if (deviceType === 'mobile') {
             interval = setInterval(() => {
                 setCurrentIndex(prevIndex => (prevIndex + 1) % reviewsData.length);
             }, deviceType === 'mobile' ? 3000 : 5000); 
@@ -50,7 +50,7 @@ function Reviews() {
             </div>
 
             <div className="reviews_cards">
-                {deviceType === 'mobile' || deviceType === 'tablet' ? (
+                {deviceType === 'mobile' ? (
                     <ReviewsCard
                         reviewimage={reviewsData[currentIndex].reviewimage}
                         maintext={reviewsData[currentIndex].maintext}
